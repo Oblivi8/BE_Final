@@ -1,0 +1,36 @@
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "dfdf", "usernamee": "samuel"}
+{"selectedStudentName": "vaishnavigaikwad969@gmail.com", "selectedStudentId": "vaishnavigaikwad969@gmail.com", "privacyOption": "public", "messageInput": "sdsd", "usernamee": "samuel"}
+{"selectedStudentName": "vaishnaviG", "selectedStudentId": "vaishnaviG", "privacyOption": "public", "messageInput": "sdsdsdssdsdsd", "usernamee": "samuel"}
+{"selectedStudentName": "vaishnaviG", "selectedStudentId": "vaishnaviG", "privacyOption": "public", "messageInput": "ss", "usernamee": "samuel", "timestamp": "2024-03-04 21:07:44"}
+{"selectedStudentName": "vaishnaviG", "selectedStudentId": "vaishnaviG", "privacyOption": "public", "messageInput": "sdd", "usernamee": "samuel", "timestamp": "2024-03-04 21:12:00"}
+{"selectedStudentName": "qqq@gmail.com", "selectedStudentId": "qqq@gmail.com", "privacyOption": "public", "messageInput": "dfdf", "usernamee": "samuel", "timestamp": "2024-03-04 21:52:17"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "hy", "usernamee": "samuel", "timestamp": "2024-03-04 22:51:14"}
+{"selectedStudentName": "lagmeshs", "selectedStudentId": "lagmeshs", "privacyOption": "public", "messageInput": "hy", "usernamee": "samuel", "timestamp": "2024-04-14 21:46:46"}
+{"selectedStudentName": "lagmeshgavali@mmcoe.edu", "selectedStudentId": "lagmeshgavali@mmcoe.edu", "privacyOption": "public", "messageInput": "hy", "usernamee": "qwe", "timestamp": "2024-04-19 00:33:41"}
+{"selectedStudentName": "lagmesha", "selectedStudentId": "lagmesha", "privacyOption": "public", "messageInput": "hy", "usernamee": "qwe", "timestamp": "2024-04-19 23:30:31"}
+{"selectedStudentName": "samuell", "selectedStudentId": "samuell", "privacyOption": "public", "messageInput": "hy", "usernamee": "qwe", "timestamp": "2024-04-20 08:18:30"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "dfdf", "usernamee": "qwe", "timestamp": "2024-04-20 08:54:53"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "hy", "usernamee": "qwe", "timestamp": "2024-04-20 09:22:13"}
+{"selectedStudentName": "vaishnavigaikwad969@gmail.com", "selectedStudentId": "vaishnavigaikwad969@gmail.com", "privacyOption": "public", "messageInput": "hy", "usernamee": "qwe", "timestamp": "2024-04-20 09:54:05"}
+{"selectedStudentName": "vaishnavigaikwad969@gmail.com", "selectedStudentId": "vaishnavigaikwad969@gmail.com", "privacyOption": "public", "messageInput": "dffd", "usernamee": "qwe", "timestamp": "2024-04-20 10:26:30"}
+{"selectedStudentName": "vaishnavigaikwad969@gmail.com", "selectedStudentId": "vaishnavigaikwad969@gmail.com", "privacyOption": "public", "messageInput": "fdfd", "usernamee": "qwe", "timestamp": "2024-04-20 10:42:00"}
+{"selectedStudentName": "qwe", "selectedStudentId": "qwe", "privacyOption": "public", "messageInput": "hy", "usernamee": "qwe", "timestamp": "2024-04-20 11:15:20"}
+{"selectedStudentName": "vaishnavigaikwad969@gmail.com", "selectedStudentId": "vaishnavigaikwad969@gmail.com", "privacyOption": "public", "messageInput": "hey hy how are you what are you doing", "usernamee": "samuel", "timestamp": "2024-04-20 12:33:56"}
+{"selectedStudentName": "qwe", "selectedStudentId": "qwe", "privacyOption": "public", "messageInput": "hy good morning", "usernamee": "samuel", "timestamp": "2024-04-20 12:34:27"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "hello my friend", "usernamee": "qwe", "timestamp": "2024-04-20 12:35:32"}
+{"selectedStudentName": "qwe", "selectedStudentId": "qwe", "privacyOption": "public", "messageInput": "hello my friend", "usernamee": "qwe", "timestamp": "2024-04-20 12:35:50"}
+{"selectedStudentName": "lagmeshgavali@mmcoe.edu", "selectedStudentId": "lagmeshgavali@mmcoe.edu", "privacyOption": "public", "messageInput": "hy", "usernamee": "samuel", "timestamp": "2024-04-27 15:30:56"}
+{"selectedStudentName": "vaishnaviG", "selectedStudentId": "vaishnaviG", "privacyOption": "public", "messageInput": "dfdf", "usernamee": "sai@gmail.com", "timestamp": "2024-04-28 18:36:14"}
+{"selectedStudentName": "vaishnaviG", "selectedStudentId": "vaishnaviG", "privacyOption": "public", "messageInput": "ghuyu", "usernamee": "sai@gmail.com", "timestamp": "2024-04-28 18:39:59"}
+{"selectedStudentName": "vaishnaviG", "selectedStudentId": "vaishnaviG", "privacyOption": "public", "messageInput": "yyyyyyyyy", "usernamee": "sai@gmail.com", "timestamp": "2024-04-28 18:40:08"}
+{"selectedStudentName": "vaishnaviG", "selectedStudentId": "vaishnaviG", "privacyOption": "public", "messageInput": "dfdf", "usernamee": "sai@gmail.com", "timestamp": "2024-04-28 18:41:14"}
+{"selectedStudentName": "vaishnaviG", "selectedStudentId": "vaishnaviG", "privacyOption": "public", "messageInput": "fffffffffffff", "usernamee": "sai@gmail.com", "timestamp": "2024-04-28 18:41:43"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "hy", "usernamee": "a", "timestamp": "2024-05-29 15:07:19"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "hy", "usernamee": "saiq@gmail.com", "timestamp": "2024-05-31 03:40:05"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "tested now", "usernamee": "saiq@gmail.com", "timestamp": "2024-05-31 03:41:20"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "FG", "usernamee": "saiq@gmail.com", "timestamp": "2024-05-31 03:42:09"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "hello", "usernamee": "saiq@gmail.com", "timestamp": "2024-05-31 03:42:46"}
+{"selectedStudentName": "sai@gmail.com", "selectedStudentId": "sai@gmail.com", "privacyOption": "public", "messageInput": "hy", "usernamee": "saiq@gmail.com", "timestamp": "2024-05-31 03:42:57"}
+{"selectedStudentName": "sai@gmail.com", "selectedStudentId": "sai@gmail.com", "privacyOption": "public", "messageInput": "tested now", "usernamee": "saiq@gmail.com", "timestamp": "2024-05-31 03:44:29"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "dfdf", "usernamee": "saiq@gmail.com", "timestamp": "2024-05-31 03:46:24"}
+{"selectedStudentName": "samuel", "selectedStudentId": "samuel", "privacyOption": "public", "messageInput": "dfdf", "usernamee": "saiq@gmail.com", "timestamp": "2024-05-31 03:47:30"}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #131314;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container-wrapper {
+            position: relative;
+        }
+        .container {
+            background-color: #232121;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            border: 2px solid #007bff;
+            animation: borderAnimation 5s linear infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 300px;
+            margin-top: 10px;
+        }
+        .container h2, .container p {
+            color: white;
+        }
+        .container p a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container p a:hover {
+            text-decoration: underline;
+        }
+        .container input[type="text"],
+        .container input[type="password"],
+        .container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            box-sizing: border-box;
+        }
+        .container input[type="submit"]:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        @keyframes borderAnimation {
+            0%, 100% { border-color: #8dc4ff; }
+            25%, 75% { border-color: #4f7bff; }
+            50% { border-color: #2c00dd; }
+        }
+        .guido-text {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            color: transparent;
+            background: linear-gradient(to right, #007bff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 1;
+            font-weight: bold;
+        }
+        .flash-message {
+            color: #FF5733; /* Change this color as needed */
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        /* Mobile message styles */
+        .mobile-message {
+            display: none;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 20px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container, .container-wrapper, .guido-text {
+                display: none; /* Hide main content on small screens */
+            }
+            .mobile-message {
+                display: block; /* Show mobile message */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile view message -->
+    <div class="mobile-message">
+        Application currently available only on PC
+    </div>
+    
+    <div class="container-wrapper">
+        <div class="guido-text"><a href="/">CampusAI</a></div>
+        <div class="container">
+            <h2>Login</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form method="post">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </form>
+            <p>Don't have an account? <a href="/signup">Register now</a></p>
+        </div>
+    </div>
+    <script>
+        console.group("%c Developers Information", 'color: red; font-size: 22px;');
+        console.log('%c This is our Career Guidance Chatbot - CampusAI', 'color: green; font-size: 18px;');
+        console.log('%c We are team Grimoires!!', 'color: blue; font-size: 16px;');
+        console.groupEnd();
+
+        console.group("%c Team members:", 'color: yellow; font-size: 22px')
+        console.log("%c Yash Borade", 'color: orange; font-size: 16px')
+        console.log("%c Shreyas Kolharkar", 'color: orange; font-size: 16px')
+        console.log("%c Diya Sonavale", 'color: orange; font-size: 16px')
+        console.log("%c Swapnil Borude", 'color: orange; font-size: 16px')
+        console.groupEnd();
+    </script>
+</body>
+</html>

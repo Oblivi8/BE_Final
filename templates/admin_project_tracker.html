@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/chatbot.css">
+
+    <link rel="stylesheet" href="/static/assets/css/typing.css">
+    <link rel="stylesheet" href="/static/assets/css/chat.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/chatbot.css">
+
+    <link rel="stylesheet" href="/static/assets/css/typing.css">
+    <link rel="stylesheet" href="/static/assets/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+   <style>
+   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 2px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  --col-gap: 2rem;
+  --row-gap: 2rem;
+  --line-w: 0.25rem;
+  display: grid;
+  grid-template-columns: var(--line-w) 1fr;
+  grid-auto-columns: max-content;
+  column-gap: var(--col-gap);
+  list-style: none;
+  width: min(60rem, 90%);
+  margin-inline: auto;
+}
+
+/* line */
+ul::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 1 / span 20;
+  background: rgb(225, 225, 225);
+  border-radius: calc(var(--line-w) / 2);
+}
+
+/* columns*/
+
+/* row gaps */
+ul li:not(:last-child) {
+  margin-bottom: var(--row-gap);
+}
+
+/* card */
+ul li {
+  grid-column: 2;
+  --inlineP: 1.5rem;
+  margin-inline: var(--inlineP);
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+}
+
+/* date */
+ul li .date {
+  --dateH: 3rem;
+  height: var(--dateH);
+  margin-inline: calc(var(--inlineP) * -1);
+
+  text-align: center;
+  background-color: var(--accent-color);
+
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  display: grid;
+  place-content: center;
+  position: relative;
+
+  border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+}
+
+/* date flap */
+ul li .date::before {
+  content: "";
+  width: var(--inlineP);
+  aspect-ratio: 1;
+  background: var(--accent-color);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+  position: absolute;
+  top: 100%;
+
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  right: 0;
+}
+
+/* circle */
+ul li .date::after {
+  content: "";
+  position: absolute;
+  width: 2rem;
+  aspect-ratio: 1;
+  background: var(--bgColor);
+  border: 0.3rem solid var(--accent-color);
+  border-radius: 50%;
+  top: 50%;
+
+  transform: translate(50%, -50%);
+  right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+}
+
+/* title descr */
+ul li .title,
+ul li .descr {
+  background: var(--bgColor);
+  position: relative;
+  padding-inline: 1.5rem;
+}
+ul li .title {
+  overflow: hidden;
+  padding-block-start: 1.5rem;
+  padding-block-end: 1rem;
+  font-weight: 500;
+}
+ul li .descr {
+  padding-block-end: 1.5rem;
+  font-weight: 300;
+}
+
+/* shadows */
+ul li .title::before,
+ul li .descr::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  border-radius: 50%;
+  filter: blur(4px);
+  transform: translate(-50%, 50%);
+}
+ul li .title::before {
+  bottom: calc(100% + 0.125rem);
+}
+
+ul li .descr::before {
+  z-index: -1;
+  bottom: 0.25rem;
+}
+/* Style for completed milestone items */
+ul li.completed {
+    background-color: lightgreen;
+}
+
+@media (min-width: 40rem) {
+  ul {
+    grid-template-columns: 1fr var(--line-w) 1fr;
+  }
+  ul::before {
+    grid-column: 2;
+  }
+  ul li:nth-child(odd) {
+    grid-column: 1;
+  }
+  ul li:nth-child(even) {
+    grid-column: 3;
+  }
+
+  /* start second card */
+  ul li:nth-child(2) {
+    grid-row: 2/4;
+  }
+
+  ul li:nth-child(odd) .date::before {
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    left: 0;
+  }
+
+  ul li:nth-child(odd) .date::after {
+    transform: translate(-50%, -50%);
+    left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+  }
+  ul li:nth-child(odd) .date {
+    border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+  }
+}
+
+.credits {
+  margin-top: 1rem;
+  text-align: right;
+}
+.credits a {
+  color: var(--color);
+}
+        /* Style for the side menu */
+        .sidebar {
+            height: 100%;
+            width: 250px; /* Adjust the width as needed */
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            padding-top: 60px; /* Add padding to separate the menu items from the top */
+        }
+
+        /* Style for the menu items */
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            display: block;
+        }
+
+        /* Change the background color of the active menu item */
+        .sidebar a.active {
+            background-color: #4CAF50;
+        }
+
+        /* Style for the menu item on hover */
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        /* Style for the main content area */
+        .content {
+            margin-left: 250px; /* Set the margin to accommodate the sidebar */
+            padding: 20px;
+        }
+
+        /* Style for the dropdown */
+        .dropdown {
+            margin-top: 10px; /* Add some margin */
+        }
+
+        /* Style for the table */
+        .student-table {
+            display: none; /* Hide the table by default */
+            margin-top: 20px; /* Add some margin */
+            border-collapse: collapse; /* Collapse the table borders */
+            width: 100%; /* Set the table width */
+        }
+
+        /* Style for table rows */
+        .student-table tr {
+            border-bottom: 1px solid #ddd; /* Add border bottom to each row */
+        }
+
+        /* Style for table header */
+        .student-table th {
+            background-color: #f2f2f2; /* Add background color to the header */
+            padding: 8px; /* Add padding to the header cells */
+            text-align: left; /* Align text to the left */
+        }
+
+        /* Style for table data cells */
+        .student-table td {
+            padding: 8px; /* Add padding to the data cells */
+            text-align: left; /* Align text to the left */
+        }
+		.chatbox__button button:hover {
+    background-color: #0056b3;
+}
+.dropdown {
+    position: absolute;
+    top: 123px; /* Adjust the top position as needed */
+    right: 20px; /* Adjust the right position as needed */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown select {
+    width: 216px;
+    padding: 9px;
+    border: none;
+    border-radius: 17px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px; /* Adjust the value as needed */
+}
+
+
+.dropdown select:focus {
+    outline: none;
+}
+
+.dropdown option {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.dropdown::after {
+    content: '\25BE'; /* Unicode for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+
+
+}
+
+.file-list {
+    margin-top: 114px;
+	margin-bottom: 114px;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.file-list h2 {
+    margin-top: 0;
+}
+
+.file-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-list th, .file-list td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-list th {
+    background-color: #f2f2f2;
+}
+
+.file-list a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.file-list a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+.suggestion-box {
+    display: none;
+    margin-top: 10px;
+}
+
+.suggestion-box textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.suggestion-box button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.suggestion-box button:hover {
+    background-color: #0056b3;
+}
+      #diaryTableDiv table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        /* CSS styles for table header */
+        #diaryTableDiv th {
+            background-color: #f2f2f2;
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* CSS styles for table rows */
+        #diaryTableDiv tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        #diaryTableDiv tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        /* CSS styles for table cells */
+        #diaryTableDiv td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+	 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid" style="margin: 0% 5%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100">
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" href="{{ url_for('admin', role='admin') }}">Home</a>
+                    </li>
+                    
+                    <li class="nav-item flex-fill">
+                            <a class="nav-link p-3 fs-7" href="/admin_project_tracker" onclick="scrollSection('FAQ')">Project-Tracker</a>
+                        </li>
+                                      <li class="nav-item flex-fill">
+                            <a class="nav-link p-3 fs-7" href="/admin_resume_an" onclick="scrollSection('FAQ')">Resume-Analyser</a>
+                        </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/" onclick="scrollSection('FAQ')">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Profile box with square shape -->
+        
+        </div>
+    </div>
+</nav>
+	
+	
+	
+
+<div id="dropdown" class="dropdown">
+    <select id="studentDropdown" onchange="displayStudentData()">
+        <option value="">Select a student</option>
+        <!-- Use Flask template engine to iterate over all_usernames and generate options -->
+        {% for username in all_usernames %}
+        <option value="{{ username }}">{{ username }}</option>
+        {% endfor %}
+    </select>
+   
+</div>
+
+
+
+<div>
+    <ul id="milestoneList" style="display: block;">
+        <!-- Loop through milestones and create list items -->
+        {% for milestone in milestones %}
+  
+			
+			    <li style="--accent-color:#41516C" onclick="toggleCompleted(this)">
+        <div class="date" contenteditable="true">{{ milestone['date'] }}</div>
+        <div class="title" contenteditable="true">{{ milestone['title'] }}</div>
+        <div class="descr" contenteditable="true">{{ milestone['description'] }}</div>
+    </li>
+      
+        {% endfor %}
+    </ul>
+</div>
+	
+ <div id="diaryTableDiv"></div>
+<!-- Div to display file list -->
+<!-- Div to display file list -->
+<div id="fileListDiv" class="file-list">
+  
+    <div id="fileListTableContainer"></div>
+</div>
+ <div id="suggestionBox" class="suggestion-box">
+        <textarea id="suggestionText" rows="4" cols="50" placeholder="Enter your suggestion..."></textarea><br>
+        <button onclick="notify()">Notify</button>
+   </div>
+	
+
+<script>
+ 
+    function updateHTML(jsonData) {
+        // Clear previous data
+        var milestoneList = document.getElementById("milestoneList");
+        milestoneList.innerHTML = "";
+
+        // Loop through JSON data and create list items
+        jsonData.forEach(function(milestone) {
+            var li = document.createElement("li");
+            li.style = "--accent-color:#41516C";
+            li.setAttribute("onclick", "toggleCompleted(this)");
+
+            var dateDiv = document.createElement("div");
+            dateDiv.className = "date";
+            dateDiv.textContent = milestone.date;
+
+            var titleDiv = document.createElement("div");
+            titleDiv.className = "title";
+            titleDiv.textContent = milestone.title;
+
+            var descrDiv = document.createElement("div");
+            descrDiv.className = "descr";
+            descrDiv.textContent = milestone.description;
+
+            li.appendChild(dateDiv);
+            li.appendChild(titleDiv);
+            li.appendChild(descrDiv);
+
+            milestoneList.appendChild(li);
+        });
+    }
+
+    // Function to display student data based on the selection
+ 
+</script>
+
+
+
+
+    <script>
+        // Function to display student data based on the selection
+        function displayStudentData() {
+            var selectedUsername = document.getElementById("studentDropdown").value;
+            console.log("lllllllll")
+            if (selectedUsername) {
+                // Make AJAX request to Flask backend
+                document.getElementById("suggestionBox").style.display = "block";
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "/get_student_data?username=" + selectedUsername, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var responseData = JSON.parse(xhr.responseText);
+                        var milestoneData = responseData.milestone_data; // Extract milestone data from the response
+                        var fileList = responseData.file_list; // Extract file list from the response
+                        var diary = responseData.diary; // Extract file list from the response
+
+                        // Update HTML to display milestone data
+                        updateHTML(milestoneData);
+                        // Update HTML to display file list
+                        displayFileList(fileList);
+                        // Update HTML to display diary data
+                        displayDiary(diary);
+                    }
+                };
+                xhr.send();
+            } else {
+                document.getElementById("suggestionBox").style.display = "none";
+            }
+        }
+
+        // Function to display file list in a tabular format
+        function displayFileList(fileList) {
+            var tableHTML = '<table border="1">';
+            tableHTML += '<tr><th>File Name</th><th>Download</th></tr>';
+
+            // Loop through each file in the list
+            for (var i = 0; i < fileList.length; i++) {
+                var fileName = fileList[i];
+                var downloadLink = '/doc/' + encodeURIComponent(fileName);
+
+                // Add a new row to the table with file name and download link
+                tableHTML += '<tr>';
+                tableHTML += '<td>' + fileName + '</td>';
+                tableHTML += '<td><a href="' + downloadLink + '" download>Download</a></td>';
+                tableHTML += '</tr>';
+            }
+
+            tableHTML += '</table>';
+
+            // Display the table inside the specified HTML div
+            document.getElementById('fileListDiv').innerHTML = tableHTML;
+        }
+	function notify() {
+    var selectedUsername = document.getElementById("studentDropdown").value;
+    var suggestionText = document.getElementById("suggestionText").value;
+    if (selectedUsername && suggestionText) {
+        // Make AJAX request to Flask backend to store notification
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/notify_student", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Handle successful response
+                alert("Notification Sent successfully!");
+            }
+        };
+        var data = JSON.stringify({ "username": selectedUsername, "suggestion": suggestionText });
+        xhr.send(data);
+    } else {
+        alert("Please select a student and enter a suggestion.");
+    }
+}
+
+  function displayDiary(diary) {
+    var tableHTML = '<table border="1">';
+    tableHTML += '<tr><th>Day</th><th>Task Name</th><th>Task Description</th><th>To Do</th><th>Time</th></tr>';
+
+    // Get the length of the arrays (assuming all arrays have the same length)
+    var length = diary.day.length;
+
+    // Loop through each index and create a table row for each entry
+    for (var i = 0; i < length; i++) {
+        // Retrieve values for each field at the current index
+        var day = diary.day[i];
+        var taskName = diary.taskName[i];
+        var taskDescription = diary.taskDescription[i];
+        var toDo = diary.toDo[i];
+        var time = diary.time[i];
+
+        // Add a new row to the table with entry details
+        tableHTML += '<tr>';
+        tableHTML += '<td>' + day + '</td>';
+        tableHTML += '<td>' + taskName + '</td>';
+        tableHTML += '<td>' + taskDescription + '</td>';
+        tableHTML += '<td>' + toDo + '</td>';
+        tableHTML += '<td>' + time + '</td>';
+        tableHTML += '</tr>';
+    }
+
+    tableHTML += '</table>';
+
+    // Display the table inside the specified HTML div
+    document.getElementById('diaryTableDiv').innerHTML = tableHTML;
+}
+		
+    </script>
+<script>
+    function sendMessageun() {
+						var userInput = document.getElementById("user_input");
+            userInput.placeholder = "Responding...";
+            sendMessage()
+	}
+	
+    function sendMessage() {
+        // Change placeholder text to "Responding..."
+        var userInput = document.getElementById("user_input");
+        userInput.placeholder = "Responding...";
+
+        // Simulate an asynchronous response (replace this with your actual logic)
+        setTimeout(function () {
+            // Replace the following line with your actual response logic
+            var response = "This is the response from the server.";
+            displayMessage(response);
+
+            // Reset placeholder text after response received
+            userInput.placeholder = "Write a message...";
+        }, 1000); // Simulating a delay of 1 second
+
+
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+					var userInput = document.getElementById("user_input");
+            userInput.placeholder = "Responding...";
+            sendMessage();
+
+        }
+    }
+
+    function displayMessage(message) {
+        var messagesDiv = document.getElementById("chatbox_messages");
+        var messageElement = document.createElement("div");
+        messageElement.textContent = message;
+        messagesDiv.appendChild(messageElement);
+    }
+</script>
+
+
+  
+
+    <script>
+
+        function scrollSection(targetId) {
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach((link) => {
+                    link.classList.remove('active');
+                });
+
+                const clickedLink = document.querySelector(`[data-target="${targetId}"]`);
+                if (clickedLink) {
+                    clickedLink.classList.add('active');
+                }
+            }
+        }
+
+        function sendMessage() {
+            var userMessage = document.getElementById('user_input').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/chatbot', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    var chatbox = document.getElementById('chatbox_messages');
+
+                    // Create new message elements
+                    var userMessageElement = document.createElement('div');
+                    userMessageElement.className = 'messages__item messages__item--visitor';
+                    userMessageElement.textContent = userMessage;
+
+                    var chatbotMessageElement = document.createElement('div');
+                    chatbotMessageElement.className = 'messages__item messages__item--operator';
+                    chatbotMessageElement.textContent = response;
+
+                    // Insert new message elements at the top of the chatbox
+                    chatbox.insertBefore(userMessageElement, chatbox.firstChild);
+
+                    chatbox.insertBefore(chatbotMessageElement, chatbox.firstChild);
+					var userInput = document.getElementById("user_input");
+                    userInput.placeholder = "write a meessage...";
+
+                }
+            };
+            xhr.send('message=' + userMessage);
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+        }
+
+    </script>
+    <script src="/static/assets/js/Chat.js"></script>
+    <script src="/static/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

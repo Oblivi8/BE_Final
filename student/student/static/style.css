@@ -1,0 +1,253 @@
+/* home page */
+
+body {
+  background-color: #c4def6;
+  overflow-x: hidden;
+}
+
+.bg_img {
+  filter: contrast(130%);
+}
+
+.quote-overlay {
+  position: absolute;
+  top: 40%; /* Adjust as needed to vertically center the text */
+  left: 50%; /* Adjust as needed to horizontally center the text */
+  transform: translate(-50%, -50%);
+  text-align: center; /* Align text to the left */
+  width: 100%;
+  padding: 0 12%;
+}
+
+.quote-text {
+  font-size: 35px; /* Adjust the font size as needed */
+  font-weight: bold;
+  color: white; /* Set the color to match the dark navbar */
+}
+.form_container,
+.bg_color {
+  background-color: #c4def6;
+}
+a {
+  text-decoration: none;
+}
+
+input {
+  border: none;
+  overflow: none;
+  border-bottom: 2px solid rgb(216, 206, 206);
+}
+
+.password-container {
+  position: relative;
+}
+
+#togglePassword {
+  outline: none;
+  border: none;
+  position: absolute;
+  top: 30%;
+  right: 20px; /* Adjust as needed based on the eye icon size */
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: white;
+}
+
+#togglePassword1 {
+  outline: none;
+  border: none;
+  position: absolute;
+  top: 28%;
+  right: 25px; /* Adjust as needed based on the eye icon size */
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: white;
+}
+
+#togglePassword2 {
+  outline: none;
+  border: none;
+  position: absolute;
+  top: 47%;
+  right: 25px; /* Adjust as needed based on the eye icon size */
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: white;
+}
+
+/* account page */
+.account_page {
+  padding: 10px 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust as needed */
+}
+.form_container {
+  /* background-color: rgb(248, 222, 222); */
+  width: 300px;
+  height: 450px;
+  position: relative;
+  text-align: center;
+  padding: 20px 0;
+  margin: auto;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.flash-messages {
+  text-align: center;
+  margin-top: 20px;
+  color: #555;
+  font-weight: bold;
+  position: absolute;
+  width: 100%; /* Make it span the full width */
+  top: 0; /* Position at the top */
+  z-index: 999; /* Ensure it appears above other content */
+}
+.form_container span {
+  font-weight: bold;
+  padding: 0 10px;
+  color: #555;
+  cursor: pointer;
+  width: 100px;
+  display: inline-block;
+}
+.form-btn {
+  display: inline-block;
+}
+.form_container form {
+  max-width: 300px;
+  padding: 0 20px;
+  position: absolute;
+  top: 130px;
+  transition: transform 1s;
+}
+form input {
+  width: 100%;
+  height: 30px;
+  margin: 10px 0;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+}
+
+form .btn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: white;
+}
+
+form .btn:focus {
+  outline: none;
+}
+#loginform {
+  left: -300px;
+}
+#registration {
+  left: 0;
+}
+form a {
+  font-size: 12px;
+}
+#indicator {
+  width: 100px;
+  border: none;
+  background: #007bff;
+  height: 3px;
+  margin: 8px;
+  transform: translate(100px);
+  transition: transform 1s;
+}
+form select {
+  width: 100%;
+  height: 30px;
+  margin: 10px 0;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+input:focus {
+  outline: none;
+}
+
+#chatbot-container {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-hidden {
+  display: none;
+}
+
+.user {
+  text-align: right;
+  margin-bottom: 5px;
+  color: #007bff;
+}
+
+.bot {
+  text-align: left;
+  margin-bottom: 5px;
+  color: #28a745;
+}
+
+button {
+  margin-top: 5px;
+}
+
+.alumni_bg {
+  margin-right: 0px;
+}
+/* alumni connect */
+/* .image-container-alumni {
+  position: relative;
+  overflow: hidden; /* Ensure the image won't overflow 
+} */
+
+.quote-overlay-alumni {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 30%;
+  color: white;
+}
+
+.quote-overlay-alumni .quote-text,
+.quote-overlay-alumni .quote-subtext-alumni {
+  margin: 0;
+}
+
+.bg-img-alumni {
+  width: 100%;
+  height: 70%; /* Ensure the image takes up the full container height */
+}
+
+.carousel-container {
+  max-width: 80%;
+  margin: 0 auto;
+}
+.accordion-item {
+  margin-bottom: 20px;
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+}
+
+.accordion-button {
+  width: 100%;
+  text-align: left;
+}

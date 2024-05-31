@@ -1,0 +1,27 @@
+[
+    {
+        "date": "Project topic selection",
+        "title": "Title 1",
+        "description": "Add Proggggggggject Topic and discription of project"
+    },
+    {
+        "date": "Develop Project Plan",
+        "title": "Title 2",
+        "description": "Add Project plan."
+    },
+    {
+        "date": "Execute Project Plan",
+        "title": "Title 3",
+        "description": "Add note- executed project plan"
+    },
+    {
+        "date": "Hardware/Software Development",
+        "title": "Title 4",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque."
+    },
+    {
+        "date": "Execute Project Plan",
+        "title": "Title 5",
+        "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit, non."
+    }
+]

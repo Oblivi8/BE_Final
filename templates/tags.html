@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tags</title>
+    <style>
+      body {
+        background-color: #000; /* Black background */
+        color: #fff; /* White text */
+        font-family: Arial, sans-serif; /* Font style */
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        color: #007bff; /* Blue color for the heading */
+      }
+
+      img {
+        height: 88vh;
+        border: 2px solid #007bff; /* Blue border for the image */
+      }
+
+      ul {
+        list-style-type: none; /* Remove default list styling */
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 10px; /* Space between list items */
+      }
+
+      a {
+        text-decoration: none; /* Remove underline from links */
+        color: white; /* Blue color for links */
+        transition: color 0.3s;
+      }
+
+      .container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-evenly;
+      }
+      h1 {
+        margin-top: 12px;
+        text-align: center;
+      }
+      .right {
+        font-size: medium;
+      }
+      li {
+        border-radius: 6px;
+        border: 2px solid gray;
+        margin-bottom: 10px;
+        background-color: rgb(62, 62, 62);
+        padding: 10px;
+        text-align: center;
+      }
+
+      li:hover{
+        background-color: rgb(176, 176, 176);
+        transition: ease 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CampusAI - Recommended Roadmaps</h1>
+    <div class="container">
+      <div class="left">
+        <img src="{{ image_url }}" alt="Uploaded Document" />
+      </div>
+      <div class="right">
+        <ul>
+          {% for tag in tags %}
+          <li><a href="/redirect/{{ tag }}" target="_blank">{{ tag }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

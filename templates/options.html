@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership Options</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+  /* Customizations */
+  .background-image {
+    background-image: url('../static/mascot1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 700px;
+    background-color: #ADD8E6; /* Changed to light blue */
+  }
+
+  .text-shadow {
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+  }
+  .card-header {
+    min-height: 60px;
+  }
+  .card {
+    min-width: 275px; /* Adjust based on the longest list item */
+  }
+  /* Additional CSS to add to your existing styles */
+  .card {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    transform: scale(1.15);
+  }
+
+  .card button {
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .card button:hover {
+    background-color: #1a202c; /* Adjust the color as needed */
+  }
+
+  .card button:hover ~ .border-t-8 {
+    border-color: #37ff00; /* Adjust the color to match the button hover color */
+  }
+  .bg-black {
+    --tw-bg-opacity: 1;
+    background-color: rgb(217 195 195);
+}
+
+        .logout-button {
+            position: absolute;
+            top: 2%;
+            right: 2%;
+            padding: 10px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color var(--transition), border-color var(--transition);
+        }
+
+        .logout-button:hover {
+            background-color: var(--primary-color-hover);
+            border-color: var(--border-color-hover);
+        }
+</style>
+
+</head>
+<body class="font-'Open Sans' bg-black text-white" style="background-color: #c4def6;">
+
+
+             <a class="logout-button" href="/" onclick="scrollSection('FAQ')">LogOut</a>     
+<div class=" min-h-screen flex items-center justify-center">
+
+  <div class="w-full md:w-2/3 lg:w-1/2">
+    <div class="text-center mb-10">
+      <h1 class="text-5xl font-bold" style="background-image: linear-gradient(to right, #4299E1, #FFCD37); -webkit-background-clip: text; color: transparent;"><a href="/"></a></h1>
+    </div>
+    <div class="flex flex-col md:flex-row md:-mx-2 justify-center gap-x-9"> <!-- gap-x-4 adds horizontal gap -->
+
+      <!-- Card 1 -->
+      <div class="md:w-1/3 px-2 mb-4 md:mb-0 flex justify-center ">
+        <div class="rounded overflow-hidden shadow-lg bg-gray-200 p-6 border-t-8 border-blue-500 card ">
+          <h2 class="font-bold text-xl mb-2 text-black card-header">CampusAI Chatbot</h2>
+          <ul class="list-disc pl-5 text-gray-700 mb-6">
+            <li class="mb-2">Start your career by chat</li>
+            <li class="mb-2">Voice input for ease</li>
+            <li class="mb-2">Look for previous chats</li>
+            <li>Free to use</li>
+          </ul>
+          <a href="{{url_for('chat')}}">
+          <button class="bg-blue-500 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded-full w-full">
+            Start Chatting
+          </button>
+        </a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="md:w-1/3 px-2 mb-4 md:mb-0 flex justify-center">
+        <div class="rounded overflow-hidden shadow-lg bg-gray-200 p-6 border-t-8 border-blue-500 card">
+          <h2 class="font-bold text-xl mb-2 text-black card-header">Skill gap analysis using Resume</h2>
+          <ul class="list-disc pl-5 text-gray-700 mb-6">
+            <li class="mb-2">Choose your career goal</li>
+            <li class="mb-2">Upload your resume</li>
+            <li class="mb-2">Wait for report generation</li>
+            <li>Free to use</li>
+          </ul>
+          <a href="{{url_for('skills')}}">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full">
+            Upload Resume
+          </button>
+        </a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="md:w-1/3 px-2 mb-4 md:mb-0 flex justify-center">
+        <div class="rounded overflow-hidden shadow-lg bg-gray-200 p-6 border-t-8 border-blue-500 card">
+          <h2 class="font-bold text-xl mb-2 text-black card-header">CampusAI Mock Interview</h2>
+          <ul class="list-disc pl-5 text-gray-700 mb-6">
+            <li class="mb-2">Choose your career goal</li>
+            <li class="mb-2">Start a chat</li>
+            <li class="mb-2">Well designed environment</li>
+            <li>Free to use</li>
+          </ul>
+          <a href="{{url_for('mock_option')}}">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full">
+            Initialize Interview
+          </button>
+        </a>
+        </div>
+      </div>
+      <!--Card 4 -->
+      <div class="md:w-1/3 px-2 mb-4 md:mb-0 flex justify-center">
+        <div class="rounded overflow-hidden shadow-lg bg-gray-200 p-6 border-t-8 border-blue-500 card">
+          <h2 class="font-bold text-xl mb-2 text-black card-header">CampusAI RoadMap</h2>
+          <ul class="list-disc pl-5 text-gray-700 mb-6">
+            <li class="mb-2">Get a road map based on your resume</li>
+            <li class="mb-2">Well designed</li>
+            <li>Free to use</li>
+          </ul>
+          <a href="{{url_for('upload_for_tags')}}">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full">
+            Get Road Map
+          </button>
+        </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

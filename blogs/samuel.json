@@ -1,0 +1,12 @@
+[
+    {
+        "title": "JavaScript ",
+        "description": "JavaScript Tutorial\nLast Updated : 28 May, 2024JavaScript is the most powerful and versatile web programming language. It is used for making the websites interactive. JavaScript helps us add features like animations, interactive forms and dynamic content to web pages.\n\nIn this JavaScript Tutorial, we\u2019ll learn all the basics to advanced topics and concepts of JavaScript. This JavaScript tutorial includes operators, control flow, functions, objects, Asynchronous JavaScript, Events, DOM manipulation, OOPs, Closures, Event loops etc.\n\nWhat is JavaScript?\nJavaScript is a programming language used for creating dynamic content on websites. It is a lightweight, cross-platform and single-threaded programming language. JavaScript is an interpreted language that executes code line by line providing more flexibility. It is a commonly used programming language to create dynamic and interactive elements in web applications. It is easy to learn.",
+        "link": "https://www.geeksforgeeks.org/javascript/"
+    },
+    {
+        "title": "java",
+        "description": " Java Tutorial | Learn Java Programming\nLast Updated: 22 May, 2024\nThis Programming Language Java Tutorial is very well suited for beginners and also for experienced programmers. This specially designed free Java tutorial will help you learn Java programming most efficiently, with all topics from basics to advanced (like Spring, Hibernate, Multithreading, etc.) with examples.\n\nWhat is Java?\nJava is a high-level, object-oriented, and widely-used programming language. Java programming language (latest Java 20) is being used in web development, enterprise applications, and mobile app development (Android), along with all cutting-edge technology in Software Industry. Java language is being used by almost all tech-giant companies like \u2013 Google, Amazon, Facebook, Instagram, Netflix, Uber\u2026 etc.\n",
+        "link": "https://www.geeksforgeeks.org/java-programming-language-tutorial/"
+    }
+]

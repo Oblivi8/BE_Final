@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  --col-gap: 2rem;
+  --row-gap: 2rem;
+  --line-w: 0.25rem;
+  display: grid;
+  grid-template-columns: var(--line-w) 1fr;
+  grid-auto-columns: max-content;
+  column-gap: var(--col-gap);
+  list-style: none;
+  width: min(60rem, 90%);
+  margin-inline: auto;
+}
+
+/* line */
+ul::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 1 / span 20;
+  background: rgb(225, 225, 225);
+  border-radius: calc(var(--line-w) / 2);
+}
+
+/* columns*/
+
+/* row gaps */
+ul li:not(:last-child) {
+  margin-bottom: var(--row-gap);
+}
+
+/* card */
+ul li {
+  grid-column: 2;
+  --inlineP: 1.5rem;
+  margin-inline: var(--inlineP);
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+}
+
+/* date */
+ul li .date {
+  --dateH: 3rem;
+  height: var(--dateH);
+  margin-inline: calc(var(--inlineP) * -1);
+
+  text-align: center;
+  background-color: var(--accent-color);
+
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  display: grid;
+  place-content: center;
+  position: relative;
+
+  border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+}
+
+/* date flap */
+ul li .date::before {
+  content: "";
+  width: var(--inlineP);
+  aspect-ratio: 1;
+  background: var(--accent-color);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+  position: absolute;
+  top: 100%;
+
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  right: 0;
+}
+
+/* circle */
+ul li .date::after {
+  content: "";
+  position: absolute;
+  width: 2rem;
+  aspect-ratio: 1;
+  background: var(--bgColor);
+  border: 0.3rem solid var(--accent-color);
+  border-radius: 50%;
+  top: 50%;
+
+  transform: translate(50%, -50%);
+  right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+}
+
+/* title descr */
+ul li .title,
+ul li .descr {
+  background: var(--bgColor);
+  position: relative;
+  padding-inline: 1.5rem;
+}
+ul li .title {
+  overflow: hidden;
+  padding-block-start: 1.5rem;
+  padding-block-end: 1rem;
+  font-weight: 500;
+}
+ul li .descr {
+  padding-block-end: 1.5rem;
+  font-weight: 300;
+}
+
+/* shadows */
+ul li .title::before,
+ul li .descr::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  border-radius: 50%;
+  filter: blur(4px);
+  transform: translate(-50%, 50%);
+}
+ul li .title::before {
+  bottom: calc(100% + 0.125rem);
+}
+
+ul li .descr::before {
+  z-index: -1;
+  bottom: 0.25rem;
+}
+/* Style for completed milestone items */
+ul li.completed {
+    background-color: lightgreen;
+}
+
+@media (min-width: 40rem) {
+  ul {
+    grid-template-columns: 1fr var(--line-w) 1fr;
+  }
+  ul::before {
+    grid-column: 2;
+  }
+  ul li:nth-child(odd) {
+    grid-column: 1;
+  }
+  ul li:nth-child(even) {
+    grid-column: 3;
+  }
+
+  /* start second card */
+  ul li:nth-child(2) {
+    grid-row: 2/4;
+  }
+
+  ul li:nth-child(odd) .date::before {
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    left: 0;
+  }
+
+  ul li:nth-child(odd) .date::after {
+    transform: translate(-50%, -50%);
+    left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+  }
+  ul li:nth-child(odd) .date {
+    border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+  }
+}
+
+.credits {
+  margin-top: 1rem;
+  text-align: right;
+}
+.credits a {
+  color: var(--color);
+}
+
+        /* Styles for the popup form */
+		        body {
+            zoom: 90%;
+        }
+        .form-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            z-index: 1;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-popup h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* Styles for the table */
+        #weeklyDiaryTable {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        #weeklyDiaryTable th,
+        #weeklyDiaryTable td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        #weeklyDiaryTable th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* Button styles */
+        .btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+			margin-top: 15px;
+            margin-bottom: 10px;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+        .btn.btn-border {
+            border: 1px solid #4CAF50;
+        }
+        .btn.cancel {
+            background-color: #ccc;
+        }
+
+        .btn:hover {
+            background-color: #334534;
+        }
+
+        /* Date picker styles */
+        .date-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+		    margin-top: 50px;
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            padding-top: 20px;
+            z-index: 1;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 22px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+#dashboard {
+    margin-left: 250px; /* Adjust according to sidebar width */
+    padding: 20px; /* Add padding to separate from sidebar */
+}
+#milestonesCollapse {
+    margin-left: 250px; /* Adjust according to sidebar width */
+    padding: 20px; /* Add padding to separate from sidebar */
+}
+
+        .main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+    </style>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/chatbot.css">
+
+    <link rel="stylesheet" href="/static/assets/css/typing.css">
+    <link rel="stylesheet" href="/static/assets/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+
+</head>
+
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid" style="margin: 0% 5%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100">
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" href="{{ url_for('student', role='student') }}">Home</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" onclick="scrollSection('resume-builder')" href="/resume_template?username={{ request.args.get('username') }}">Resume Builder</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/chat_student?username={{ request.args.get('username') }}">Alumni Connect</a>
+                    </li>
+                         <li class="nav-item flex-fill">
+    <a class="nav-link p-3 fs-7" href="/project_status?username={{ request.args.get('username') }}" onclick="scrollSection('project-status')">Project Update</a>
+</li>
+               
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/faq_student?username={{ request.args.get('username') }}" onclick="scrollSection('FAQ')">FAQ</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+    <a class="nav-link p-3 fs-7" href="/options" onclick="scrollSection('ai')">AI!</a>
+</li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/" onclick="scrollSection('FAQ')">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+			         <div class="ms-3">
+    <div class="profile-box bg-primary text-white rounded p-2">
+        <p class="mb-0">WELCOME</p>
+        <p class="mb-0">{{ request.args.get('username') }}</p>
+    </div>
+</div>
+
+            <!-- Profile box with square shape -->
+       
+
+	   
+        </div>
+		
+    </div>
+</nav>
+
+<h1>Milestone</h1>
+<div class="sidebar">
+    <button class="btn btn-border" data-bs-toggle="collapse" href="#milestonesCollapse" aria-expanded="false" aria-controls="milestonesCollapse">Dashboard</button>
+    <button class="btn btn-border" onclick="openWeeklyDiary()">Open Weekly Diary</button>
+    <button class="btn btn-border" onclick="displayNotification()">Project Notification</button>
+
+    <button class="btn btn-border" onclick="Sponsorship()">Sponsorship letter</button>
+    <button class="btn btn-border" onclick="update()">DOC update</button>
+    <!-- Add more buttons here -->
+</div>
+<!-- Milestone items -->
+<ul id="milestoneList" contenteditable="true">
+    <!-- Existing milestone items -->
+    <li style="--accent-color:#41516C" onclick="toggleCompleted(this)">
+        <div class="date" contenteditable="true">Project topic selection</div>
+        <div class="title" contenteditable="true">Title 1</div>
+        <div class="descr" contenteditable="true">Add Project Topic and discription of project</div>
+    </li>
+    <li style="--accent-color:#FBCA3E" onclick="toggleCompleted(this)">
+        <div class="date" contenteditable="true">Develop Project Plan</div>
+        <div class="title" contenteditable="true">Title 2</div>
+        <div class="descr" contenteditable="true">Add Project plan.</div>
+    </li>
+    <li style="--accent-color:#E24A68" onclick="toggleCompleted(this)">
+        <div class="date" contenteditable="true">Execute Project Plan</div>
+        <div class="title" contenteditable="true">Title 3</div>
+        <div class="descr" contenteditable="true">Add note- executed project plan</div>
+    </li>
+    <li style="--accent-color:#1B5F8C" onclick="toggleCompleted(this)">
+        <div class="date" contenteditable="true">Hardware/Software Development</div>
+        <div class="title" contenteditable="true">Title 4</div>
+        <div class="descr" contenteditable="true">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque.</div>
+    </li>
+    <li style="--accent-color:#4CADAD" onclick="toggleCompleted(this)">
+        <div class="date" contenteditable="true">Execute Project Plan</div>
+        <div class="title" contenteditable="true">Title 5</div>
+        <div class="descr" contenteditable="true">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit, non.</div>
+    </li>
+</ul>
+
+<script>
+    function openWeeklyDiary() {
+        document.getElementById("weeklyDiaryForm").style.display = "block";
+    }
+    function saveData() {
+        var milestoneList = [];
+        var milestones = document.querySelectorAll("#milestoneList li");
+        
+        milestones.forEach(function(milestone) {
+            var date = milestone.querySelector(".date").innerText;
+            var title = milestone.querySelector(".title").innerText;
+            var description = milestone.querySelector(".descr").innerText;
+
+            milestoneList.push({
+                date: date,
+                title: title,
+                description: description
+            });
+        });
+
+        if (milestoneList.length === 0) {
+            alert('No milestone data to save.');
+            return;
+        }
+
+        // Get the username from the URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var username = urlParams.get('username');
+
+        // Prepare the payload with milestone data and username
+        var payload = {
+            milestoneList: milestoneList,
+            username: username
+        };
+
+        fetch('/save_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            alert('Data saved successfully');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving data');
+        });
+    }
+</script>
+
+
+
+<button class="btn btn-border" onclick="saveData()">Save</button>
+
+<div class="credits"><a target="_blank" href="https://www.freepik.com/free-vector/infographic-template-with-yearly-info_1252895.htm"></a></div>
+<div class="form-popup" id="docUploadPopup">
+    <h3>Upload Document</h3>
+    <form id="docUploadForm" action="/uploadd?username={{ request.args.get('username') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="docFileInput" accept=".doc, .docx, .pdf">
+        <button class="btn" type="submit">Submit</button>
+        <button class="btn cancel" onclick="closeDocUploadPopup()">Cancel</button>
+    </form>
+</div>
+
+<div class="form-popup" id="Notification">
+    <h3 style="text-align: center;">Notification</h3>
+    <ul id="notificationList"></ul>
+    <button type="button" class="btn cancel" onclick="closeNotification()">Close</button>
+</div>
+
+
+<script>
+function closeNotification() {
+    var notificationPopup = document.getElementById("Notification");
+    if (notificationPopup) {
+        notificationPopup.style.display = "none";
+    } else {
+        console.error("Notification popup element not found.");
+    }
+}
+function displayNotification() {
+    var notificationPopup = document.getElementById("Notification");
+    if (notificationPopup) {
+        notificationPopup.style.display = "block";
+    } else {
+        console.error("Notification popup element not found.");
+    }
+
+    // Extract username from the URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var selectedUsername = urlParams.get('username');
+
+    if (selectedUsername) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/get_notification?username=" + encodeURIComponent(selectedUsername), true);
+		console.log("jfffffffffkjkj")
+        xhr.onreadystatechange = function() {
+		console.log("jkjksssssssssj")
+           
+			console.log("jkjssssssssttttttsssssssssssssssssskj")
+                var notificationData = JSON.parse(xhr.responseText);
+                if (notificationData && !notificationData.error) {
+                    updateNotification(notificationData);
+					console.log("jkjkj")
+					console.log(notificationData)
+                } else {
+                    document.getElementById("notificationList").innerHTML = '<li>No notifications found for the user.</li>';
+                }
+            
+        };
+        xhr.send();
+    }
+}
+
+
+function updateNotification(notificationData) {
+    var notificationList = document.getElementById("notificationList");
+    notificationList.innerHTML = ''; // Clear previous notifications
+
+    // Create a list item for the suggestion
+    var suggestionItem = document.createElement("li");
+    suggestionItem.textContent = "Suggestion: " + notificationData.suggestion;
+    notificationList.appendChild(suggestionItem);
+	console.log(suggestionItem)
+}
+
+
+function closeNotification() {
+    document.getElementById("Notification").style.display = "none";
+}
+</script>
+
+<script>
+    function navigateToProjectUpdate(username) {
+        // Construct the URL with the username as a query parameter
+        var url = '/project_status?username=' + username;
+
+        // Navigate to the URL
+        window.location.href = url;
+    }
+</script>
+
+<script>
+    // Your existing JavaScript functions
+
+    // Function to display the file upload popup
+    function update() {
+        document.getElementById("docUploadPopup").style.display = "block";
+    }
+
+    // Function to close the file upload popup
+    function closeDocUploadPopup() {
+        document.getElementById("docUploadPopup").style.display = "none";
+    }
+
+    // Function to handle file submission (you can add your logic here)
+    function submitDoc() {
+        // Add functionality to handle file submission here
+        // For now, just close the popup window
+        closeDocUploadPopup();
+    }
+</script>
+<!-- Bootstrap Bundle with Popper -->
+<scrip
+<!-- The weekly diary popup form -->
+<div class="form-popup" id="weeklyDiaryForm">
+  <h3 style="text-align: center;"></h3>
+
+  <h3 style="text-align: center;">Weekly Diary Entry</h3>
+
+  <!-- Week selection -->
+<!-- Week selection -->
+<input type="week" id="weekSelection" class="date-input" required>
+
+
+  <table id="weeklyDiaryTable" border="0">
+    <tr>
+      <th>Date</th>
+      <th>Task Name</th>
+      <th>Task Description</th>
+      <th>To Do</th>
+      <th>Time</th>
+    </tr>
+    <!-- 7 rows for each day of the week -->
+    <tr>
+        <td>Monday</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+    <tr>
+        <td>Tuesday</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+    <tr>
+        <td>Wednesday</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+    <tr>
+        <td>Thursday</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+    <tr>
+        <td>Friday</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+    <tr>
+        <td>Saturday</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+    <tr>
+        <td>Sunday</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+    </tr>
+  </table>
+<button type="button" class="btn" onclick="saveWeeklyDiary()">Update</button>
+
+  <button type="button" class="btn cancel" onclick="closeWeeklyDiary()">Close</button>
+</div>
+<script>
+
+</script>
+
+<script>
+function toggleCompleted(element) {
+    // Get all milestone items
+    var milestones = document.querySelectorAll('ul li');
+
+    // Get the index of the clicked milestone
+    var clickedIndex = Array.from(milestones).indexOf(element);
+
+    // Loop through all milestone items
+    for (var i = 0; i <= clickedIndex; i++) {
+        // Toggle the 'completed' class on each milestone item up to the clicked one
+        milestones[i].classList.toggle('completed');
+    }
+}
+
+
+function toggleCompleted(element) {
+    // Toggle the 'completed' class on the clicked milestone item
+    element.classList.toggle('completed');
+}
+
+    function openWeeklyDiary() {
+        document.getElementById("weeklyDiaryForm").style.display = "block";
+    }
+	    function Notification() {
+        document.getElementById("Notification").style.display = "block";
+    }
+   function showDashboard() {
+        // Show the dashboard content and hide the weekly diary form
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("weeklyDiaryForm").style.display = "none";
+    }
+    function closeWeeklyDiary() {
+        document.getElementById("weeklyDiaryForm").style.display = "none";
+    }
+	 function closeNotification() {
+        document.getElementById("Notification").style.display = "none";
+    }
+
+function saveWeeklyDiary() {
+    const weekSelection = document.getElementById('weekSelection').value;
+    const dailyEntries = [];
+    const username = '{{ request.args.get('username') }}'; // Include username
+
+    const rows = document.querySelectorAll('#weeklyDiaryTable tbody tr');
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+
+        // Check if all cells are present
+        if (cells.length === 5) {
+            const day = cells[0].textContent || '';
+            const taskName = cells[1].textContent || '';
+            const taskDescription = cells[2].textContent || '';
+            const toDo = cells[3].textContent || '';
+            const time = cells[4].textContent || '';
+
+            const entry = {
+                day,
+                taskName,
+                taskDescription,
+                toDo,
+                time
+            };
+
+            dailyEntries.push(entry);
+        } else {
+            console.error('Error: Incorrect number of cells in row', row);
+            console.error('Cells in row:', cells.length);
+            console.error('Row content:', row.innerHTML);
+        }
+    });
+
+    const data = {
+        username, // Include username
+        weekSelection,
+        dailyEntries
+    };
+
+    fetch('/save_weekly_diary', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle response
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle error
+    });
+}
+</script>
+
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/static/assets/js/Chat.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+
+
+
+</html>

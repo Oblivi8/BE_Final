@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/chatbot.css">
+    <link rel="stylesheet" href="/static/assets/css/chat.css">
+
+    <title>Home</title>
+ 
+</head>
+
+
+<body>
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid" style="margin: 0% 5%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100">
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" href="{{ url_for('alumni', role='alumni') }}">Home</a>
+                    </li>
+
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/chat_alumni">Alumni Connect</a>
+                    </li>
+                
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/faq_alumni" onclick="scrollSection('FAQ')">FAQ</a>
+                    </li>
+                  <li class="nav-item flex-fill">
+    <a class="nav-link p-3 fs-7" href="/options" onclick="scrollSection('ai')">AI</a>
+</li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/" onclick="scrollSection('FAQ')">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Profile box with square shape -->
+            <div class="ms-3">
+                <div class="profile-box bg-primary text-white rounded p-2">
+                    <p class="mb-0">Seat Number: {{ seat_no }}</p>
+                    <p class="mb-0">{{ username }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!------------------------Alumni community------------>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{url_for('static', filename='alumni_connect/collaboration.jpg')}}"
+                    class="d-block w-100 bg_img" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 class="text-dark">Buckling UP!</h3>
+                    <p>Collaborative initiavtes by various alumni having domain expertise and market experiences.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{url_for('static', filename='alumni_connect/sessions.jpg')}}" class="d-block w-100 bg_img"
+                    alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 class="text-dark">Networking</h3>
+                    <p>The market secret is Networking! learn from the masters themselves. Sessions conducted and events
+                        orgranized on a regualr basis.
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{url_for('static', filename='alumni_connect/world2.jpg')}}" class="d-block w-100 bg_img"
+                    alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 class="text-dark">Accross Globe</h3>
+                    <p>Be a part of our community where the hosts and speakers are spread across the world.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!----------------------chatbot----------------->
+    <div class="chatbox">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__content--header">
+                    <h4 class="chatbox__heading--header">Chat support</h4>
+                </div>
+            </div>
+            <div class="chatbox__messages" id="chatbox_messages">
+            </div>
+            <div class="chatbox__footer">
+                <input type="text" id="user_input" placeholder="Write a message...">
+                <button onclick="sendMessage()" class="chatbox__send--footer"> <i class="fas fa-location-arrow"></i>
+                </button>
+
+            </div>
+        </div>
+        <div class="chatbox__button">
+            <button>button</button>
+        </div>
+    </div>
+
+    <!-------------card----------------->
+    <div class="card mb-5 mt-5 mx-auto shadow-lg p-3 mb-5 bg-body rounded" style="max-width: 50%;">
+        <div class="row g-3">
+            <div class="col-md-6 p-3 ">
+                <img src="{{url_for('static', filename='alumni_connect/world2.jpg')}}" class="img-fluid rounded-start "
+                    alt="...">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">The MISSION!</h5>
+                    <p class="card-text"> our mission is clear – to provide a platform for networking, mentorship, and
+                        mutual growth. We believe in the power of shared experiences and the wisdom that comes from
+                        navigating the various stages of life. Through our initiatives, events, and collaborative
+                        projects, we aim to create a nurturing environment that enables our juniors to thrive
+                        academically, professionally, and personally.</p>
+                    <p class="card-text"><small class="text-muted">Your Senior ;)</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mt-5" id="Blogs">Technical Blogs</h2>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6 col-lg-4 mb-3 mr-4">
+            <div class="card mb-3 shadow p-3 mb-5 bg-body rounded">
+                <img src="{{url_for('static', filename='alumni_connect/AI1.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Transformative Power of GPT-4</h5>
+                    <p class="card-text">Explore the revolutionary advancements brought by GPT-4 in natural
+                        language
+                        processing and its impact on various industries. Discover how this state-of-the-art
+                        model is
+                        pushing the boundaries of AI capabilities and promoting no code culture amongst the
+                        market.
+                        <span class="read-more">Read more...</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-3 mr-4">
+            <div class="card mb-3 shadow p-3 mb-5 bg-body rounded">
+                <img src="{{url_for('static', filename='alumni_connect/AI2.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">AI in Healthcare: Cutting-Edge Innovations</h5>
+                    <p class="card-text">Discover how artificial intelligence is revolutionizing healthcare with
+                        innovative technologies and personalized patient care. Learn about the latest
+                        breakthroughs in
+                        medical diagnosis, treatment planning, and drug discovery. <span class="read-more">Read
+                            more...</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4 mb-3 mr-4">
+            <div class="card mb-3 shadow p-3 mb-5 bg-body rounded">
+                <img src="{{url_for('static', filename='alumni_connect/AI3.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Navigating the Moral Landscape</h5>
+                    <p class="card-text">Delve into the ethical considerations and challenges surrounding the
+                        development and deployment of artificial intelligence systems. Explore the impact of AI
+                        on
+                        privacy, bias, and societal norms. <span class="read-more">Read more...</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-3 mr-4">
+            <div class="card mb-3 shadow p-3 mb-5 bg-body rounded">
+                <img src="{{url_for('static', filename='alumni_connect/AI4.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Shaping the Future of Automation</h5>
+                    <p class="card-text">Explore the latest advancements in AI-driven robotics, from autonomous
+                        vehicles
+                        to intelligent manufacturing systems. Witness how AI is transforming industries and
+                        reshaping
+                        the landscape of automation. <span class="read-more">Read more...</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="/static/js/jquery-2.1.3.js"> -->
+<script>
+    // Extract parameters from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    const password = urlParams.get('password');
+    const role = urlParams.get('role');
+    const seatNo = urlParams.get('seat_no');
+
+    // Log the information to the browser console
+    console.log(`Username: ${username}`);
+    console.log(`Password: ${password}`);
+    console.log(`Role: ${role}`);
+    console.log(`Seat No: ${seatNo}`);
+</script>
+    <script>
+        function scrollSection(targetId) {
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach((link) => {
+                    link.classList.remove('active');
+                });
+
+                const clickedLink = document.querySelector(`[data-target="${targetId}"]`);
+                if (clickedLink) {
+                    clickedLink.classList.add('active');
+                }
+            }
+        }
+
+        function sendMessage() {
+            var userMessage = document.getElementById('user_input').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/chatbot', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    var chatbox = document.getElementById('chatbox_messages');
+
+                    // Create new message elements
+                    var userMessageElement = document.createElement('div');
+                    userMessageElement.className = 'messages__item messages__item--visitor';
+                    userMessageElement.textContent = userMessage;
+
+                    var chatbotMessageElement = document.createElement('div');
+                    chatbotMessageElement.className = 'messages__item messages__item--operator';
+                    chatbotMessageElement.textContent = response;
+
+                    // Insert new message elements at the top of the chatbox
+                    chatbox.insertBefore(userMessageElement, chatbox.firstChild);
+
+                    chatbox.insertBefore(chatbotMessageElement, chatbox.firstChild);
+                }
+            };
+            xhr.send('message=' + userMessage);
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+        }
+
+    </script>
+    <script src="/static/assets/js/Chat.js"></script>
+    <script src="/static/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+		    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/chatbot.css">
+    <link rel="stylesheet" href="/static/assets/css/chat.css">
+	    <style>
+        #data-container {
+            margin-bottom: 20px;
+        }
+
+      .chat-container {
+    margin-left: 0px; /* Shift to the left */
+    max-width: 1300px;
+    margin-top: 20px; /* Adjust top margin if needed */
+    margin-bottom: 20px; /* Adjust bottom margin if needed */
+    margin-right: auto; /* Center horizontally */
+    padding: 00px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+        #chat-messages {
+            height: 255px;
+            overflow-y: scroll;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        #user-input {
+            width: 100%;
+            padding: 5px;
+        }
+		     #side-panel {
+            position: fixed;
+            top: 30;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #profile-container {
+            margin-left: 320px; /* Adjust this value according to your layout */
+            padding: 20px;
+            border-left: 1px solid #ccc;
+        }
+        
+        .student {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        
+        .student:hover {
+            background-color: #e9ecef;
+        }
+		   .side-panel {
+            position: fixed;
+            top: 30;
+            right: 0;
+            width: 300px; /* Adjust width as needed */
+            height: 100%;
+            background-color: #f8f9fa; /* Change background color as needed */
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000; /* Ensure it appears above other content */
+            border-left: 1px solid #ccc; /* Add border for separation */
+        }
+
+        /* Style for student list items */
+        .student-item {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        /* Style for the profile popup */
+        .profile-popup {
+            /* Style the popup as needed */
+        }
+.side-panel {
+    position: fixed;
+    top: 90px;
+    right: 0;
+    width: 300px;
+    min-width: 50px; /* Minimum width when collapsed */
+    height: 100%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-left: 1px solid #ccc;
+    transition: width 0.3s ease;
+}
+
+.side-panel.collapsed {
+    width: 50px; /* Width when collapsed */
+}
+
+.panel-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle-button {
+    margin-top: auto;
+    cursor: pointer;
+}
+
+.side-panel {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.panel-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-section {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+select {
+    cursor: pointer;
+}
+.profile-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 500px;
+    max-width: 80%;
+}
+
+.popup-content {
+    text-align: left;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #777;
+}
+
+.close-button:hover {
+    color: red;
+}
+
+#profile-details {
+    margin-top: 20px;
+}
+
+#profile-details p {
+    margin-bottom: 10px;
+}
+
+#linkedin-link,
+#instagram-link {
+    color: blue;
+    text-decoration: none;
+}
+
+#linkedin-link:hover,
+#instagram-link:hover {
+    text-decoration: underline;
+}
+
+   .chat-popup {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+    width: 400px; /* Set fixed width */
+    height: 560px; /* Set fixed height */
+    display: none;
+}
+
+
+    .chat-container {
+        /* Add your styles for the chat container */
+    }
+
+    .info-section {
+        /* Add your styles for the info section */
+    }
+
+    /* Style for the Start Chat button */
+    #start-chat-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    #start-chat-btn:hover {
+        background-color: #0056b3;
+    }
+.popup-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px; /* Optional: Add margin between buttons */
+}
+
+.popup-button:hover {
+    background-color: #0056b3;
+}
+#show-profile-btn {
+     background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px; /* Optional: Add margin between buttons */
+}
+
+#show-profile-btn:hover {
+    background-color: #d39e00; /* Darker shade of yellow */
+}
+.instagram-feed {
+    width: 70%;
+    margin-left: 20px; /* Adjust the left margin as needed */
+    margin-top: 20px; /* Adjust the top margin as needed */
+}
+
+
+.post {
+    margin-bottom: 20px; /* Adjust spacing between posts */
+    border: 1px solid #ccc; /* Add border around posts */
+    padding: 20px; /* Add padding inside posts */
+}
+
+.profile-name {
+    font-weight: bold;
+    margin-bottom: 10px; /* Add spacing below profile name */
+}
+
+.post-content p {
+    margin-bottom: 10px; /* Add spacing between paragraphs */
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-between; /* Arrange images evenly spaced */
+    margin-bottom: 10px; /* Add spacing below image container */
+}
+
+.image-container img {
+    width: 48%; /* Adjust width of images */
+    max-height: 200px; /* Limit height of images */
+}
+
+.post-content a {
+    color: blue; /* Change link color */
+    text-decoration: underline; /* Underline links */
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.popup-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 5px;
+  border: 1px solid #888;
+  width: 80%;
+}
+.popup-contentt {
+  background-color: #fefefe;
+  margin: 20% auto;
+  padding: 21px;
+  border: 1px solid #888;
+  width: 47%;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#add-blog-button {
+  background-color: #4CAF50; /* Green background */
+  border: none;
+  color: white; /* White text */
+  padding: 15px 32px; /* Padding */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px; /* Add margin */
+  cursor: pointer; /* Cursor style */
+}
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid" style="margin: 0% 5%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100">
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" href="{{ url_for('student', role='student') }}">Home</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" onclick="scrollSection('resume-builder')" href="/resume_template?username={{ username }}">Resume Builder</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/chat_student?username={{ username }}">Alumni Connect</a>
+                    </li>
+                         <li class="nav-item flex-fill">
+    <a class="nav-link p-3 fs-7" href="/project_status?username={{ username }}" onclick="scrollSection('project-status')">Project Update</a>
+</li>
+               
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/faq_student?username={{ username }}" onclick="scrollSection('FAQ')">FAQ</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+    <a class="nav-link p-3 fs-7" href="/options" onclick="scrollSection('ai')">AI!</a>
+</li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/" onclick="scrollSection('FAQ')">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Profile box with square shape -->
+                          <div class="ms-3">
+                <div class="profile-box bg-primary text-white rounded p-2">
+                    <p class="mb-0">WELCOME</p>
+                    <p class="mb-0">{{ username }}</p>
+                </div>
+            </div> 
+        </div> 
+    </div>     
+</nav>         
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <!-- Navbar content -->
+</nav>
+
+<!-- Profile popup window -->
+<div class="profile-popup" style="display: none;">
+    <div class="popup-content">
+        <button class="cancel-button">Cancel</button>
+        <!-- Profile content will be displayed here -->
+        <h5>Profile Name</h5>
+        <p>Profile Description</p>
+    </div>
+</div>
+
+<div class="chat-popup" id="chat-popup" style="display: none;">
+    <button class="close-button" onclick="closeChatPopup()">×</button>
+    <div class="chat-container">
+        <div class="info-section">
+            <h3>Chat With</h3>
+            <h4 id="selected-student-name"></h4>
+        </div>
+        <div id="data-container"></div>
+        <div id="chat-messages"></div>
+        <form id="chat-form">
+            <input type="text" class="message" id="message-input" placeholder="Type your message" required />
+            <input type="submit" value="Send" />
+        </form>
+    </div>
+</div>
+
+
+
+    <script src="chat_script.js"></script>      
+               
+<div class="side-panel" id="side-panel">
+    <div class="panel-content">
+        <div class="panel-section">
+            <label for="privacy-dropdown">Privacy:</label>
+            <select id="privacy-dropdown">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+        </div>
+        <div class="panel-section">
+            <label for="search-bar">Search Alumni:</label>
+            <input type="text" id="search-bar" placeholder="Search by Name" oninput="updateDropdown()" />
+        </div>
+        <div class="panel-section">
+            <label for="student-dropdown"></label>
+            <select id="student-dropdown"></select>
+        </div>
+        <!-- Add the "Show Profile" button inside the side panel -->
+        <div class="panel-section">
+            <button id="show-profile-btn" disabled>Show Profile</button>
+     
+            <button id="start-chat-btn" onclick="toggleChatPopup()">Start Chat</button>
+			
+        </div>
+		  
+    </div>
+</div>
+
+<div class="profile-popup" id="profile-popup" style="display: none;">
+    <div class="popup-content">
+        <button class="close-button" onclick="closeProfilePopup()">×</button>
+        <div class="profile-header">
+            <img id="profile-photo" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Photo">
+            <h3>Profile Details</h3>
+        </div>
+        <div id="profile-details">
+            <p id="profile-name"></p>
+            <p id="profile-email"></p>
+            <p><a id="linkedin-link" target="_blank">LinkedIn</a></p>
+            <p><a id="instagram-link" target="_blank">Instagram</a></p>
+            <!-- Add more profile details as needed -->
+        </div>
+    </div>
+</div>
+
+<!-- Button to trigger the blog popup -->
+<button id="add-blog-button">Add Blog</button>
+
+<!-- Blog popup -->
+<div id="blog-popup" class="popup" style="display: none;">
+  <div class="popup-contentt">
+    <span class="close">&times;</span>
+    <h2>Add Blog</h2>
+    <form id="blog-form">
+      <label for="blog-title">Title:</label><br>
+      <input type="text" id="blog-title" name="blog-title"><br>
+      <label for="blog-description">Description:</label><br>
+      <textarea id="blog-description" name="blog-description"></textarea><br>
+      <label for="blog-link">Link:</label><br>
+      <input type="text" id="blog-link" name="blog-link"><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+<div class="instagram-feed">
+    <div class="post">
+        <div class="profile-name">John Doe</div>
+        <div class="post-content">
+            <p>This is a sample blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum magna sit amet urna sollicitudin, at fermentum justo lacinia.</p>
+            <p>Here's a link to the blog: <a href="sample-blog-link1" target="_blank">Sample Blog 1</a></p>
+        </div>
+    </div>
+    <div class="post">
+        <div class="profile-name">Jane Smith</div>
+        <div class="post-content">
+            <p>This is another sample blog post. Curabitur sit amet mauris volutpat, venenatis ipsum et, fringilla metus.</p>
+            <div class="image-container">
+                <img src="sample-image1.jpg" alt="Sample Image 1">
+                <img src="sample-image2.jpg" alt="Sample Image 2">
+           </div>
+             <p>Here's a job referral link: <a href="job-referral-link" target="_blank">Job Referral</a></p>
+        </div>
+    </div>
+
+</div>
+    <script>
+        // Function to make an AJAX request to the server
+        function fetchData() {
+            // Send an AJAX request to the '/fetch-data' route
+            fetch('/instagram-feed')
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Data received from server:", data);
+                    displayPosts(data);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Function to display posts in the Instagram feed
+  function displayPosts(data) {
+    // Reference to the Instagram feed container
+    const feedContainer = document.querySelector('.instagram-feed');
+
+    // Iterate through each post in the data
+    data.blog_posts.forEach(post => {
+        // Create elements for each post
+        const postElement = document.createElement('div');
+        postElement.classList.add('post');
+
+        const profileName = document.createElement('div');
+        profileName.classList.add('profile-name');
+        profileName.textContent = post.username;
+
+        const postContent = document.createElement('div');
+        postContent.classList.add('post-content');
+
+        const title = document.createElement('h3');
+        title.textContent = post.title;
+
+        const description = document.createElement('p');
+        description.textContent = post.description;
+
+        // Create the link element
+        const link = document.createElement('a');
+        link.textContent = "Read more";
+
+        // Check if the link is absolute
+        if (post.link.startsWith('http://') || post.link.startsWith('https://')) {
+            // If the link is already absolute, use it as is
+            link.href = post.link;
+        } else {
+            // If the link is relative, prepend it with 'http://' to make it absolute
+            link.href = 'http://' + post.link;
+        }
+
+        link.target = "_blank";
+
+        // Append elements to the post container
+        postContent.appendChild(title);
+        postContent.appendChild(description);
+        postContent.appendChild(link);
+
+        postElement.appendChild(profileName);
+        postElement.appendChild(postContent);
+
+        // Append the post element to the Instagram feed container
+        feedContainer.appendChild(postElement);
+    });
+}
+
+        // Call fetchData() function directly after the script loads
+        fetchData();
+    </script>
+<script>
+document.getElementById("add-blog-button").addEventListener("click", function() {
+  document.getElementById("blog-popup").style.display = "block";
+});
+
+document.querySelector(".close").addEventListener("click", function() {
+  document.getElementById("blog-popup").style.display = "none";
+});
+
+document.getElementById("blog-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  var title = document.getElementById("blog-title").value;
+  var description = document.getElementById("blog-description").value;
+  var link = document.getElementById("blog-link").value;
+  
+  // Get username
+  var username = "{{ username }}"; // Replace with actual username
+  
+  // Add new post to Instagram feed
+  var feed = document.querySelector(".instagram-feed");
+  var newPost = document.createElement("div");
+  newPost.classList.add("post");
+  newPost.innerHTML = '<div class="profile-name">' + username + '</div>' +
+                      '<div class="post-content">' +
+                      '<h3>' + title + '</h3>' +
+                      '<p>' + description + '</p>' +
+                      '<p>Link: <a href="' + link + '" target="_blank">' + link + '</a></p>' +
+                      '</div>';
+  feed.appendChild(newPost);
+  
+  // Fetch request to submit the blog
+  fetch('/submit_blog', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: username,
+      'blog-title': title,
+      'blog-description': description,
+      'blog-link': link,
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Optionally, you can display a success message or update the UI here
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    // Handle error if needed
+  });
+  
+  // Close popup
+  document.getElementById("blog-popup").style.display = "none";
+});
+</script>
+
+
+
+<script>    
+
+
+
+
+
+
+function closeChatPopup() {
+    document.getElementById("chat-popup").style.display = "none";
+}
+
+   function toggleChatPopup() {
+        var chatPopup = document.getElementById("chat-popup");
+        if (chatPopup.style.display === "none") {
+            // Show the chat popup window
+            chatPopup.style.display = "block";
+        } else {
+            // Hide the chat popup window
+            chatPopup.style.display = "none";
+        }
+    }
+  function startChat() {
+    // Show the chat container
+    document.getElementById("chat-container").style.display = "block";
+    
+    // Optionally, you can scroll to the chat container for better user experience
+    document.getElementById("chat-container").scrollIntoView({ behavior: "smooth" });
+}
+// JavaScript to enable the button when a student is selected and show the pop-up window when the button is clicked
+document.getElementById("student-dropdown").addEventListener("change", function() {
+    // Get the selected student's name
+    const selectedStudentName = document.getElementById("student-dropdown").value;
+    
+    // Display the selected student's name in the info section
+    document.getElementById("selected-student-name").innerText = "" + selectedStudentName;
+
+    const selectedStudent = document.getElementById("student-dropdown").value;
+    const showProfileBtn = document.getElementById("show-profile-btn");
+    if (selectedStudent) {
+        showProfileBtn.disabled = false;
+    } else {
+        showProfileBtn.disabled = true;
+    }
+});
+
+// Event listener for the "Show Profile" button click
+document.getElementById("show-profile-btn").addEventListener("click", function() {
+    const selectedStudentEmail = document.getElementById("student-dropdown").value;
+    
+    // Extract the name from the email (assuming the email format is 'name@example.com')
+    const name = selectedStudentEmail.split("@")[0];
+    
+    // Generate LinkedIn and Instagram links based on the student's name
+    const linkedInLink = "https://www.linkedin.com/in/" + name;
+    const instagramLink = "https://www.instagram.com/" + name;
+    
+    // Update the popup content with the extracted name and links
+    document.getElementById("profile-name").innerText = "User Name: " + name;
+    document.getElementById("profile-email").innerText = "Email: " + selectedStudentEmail;
+    document.getElementById("linkedin-link").setAttribute("href", linkedInLink);
+    document.getElementById("instagram-link").setAttribute("href", instagramLink);
+    
+    // Show the popup window
+    document.getElementById("profile-popup").style.display = "block";
+});
+
+
+function closeProfilePopup() {
+    document.getElementById("profile-popup").style.display = "none";
+}
+ 
+    // Define a function to add a message to the chat
+    function addMessage(from, message, timestamp) {
+        var chatMessages = document.getElementById("chat-messages");
+        var messageDiv = document.createElement("div");
+        messageDiv.innerHTML = "<strong>" + from + ":</strong> " + message + " (" + timestamp + ")";
+        chatMessages.appendChild(messageDiv);
+    }          
+               
+    // Function to load and display messages from publicchat_student.txt
+    function loadPublicMessages() {
+        // Assuming public_messages is a JSON array obtained from Flask
+        var publicMessages = {{ public_messages | safe }};
+               
+        // Get the current user's username
+        var username = "{{ username }}";
+               
+        // Loop through each message and add it to the chat if the recipient matches the current user
+        publicMessages.forEach(function(message) {
+            if (message.selectedStudentName === username) {
+                addMessage(message.selectedStudentName, message.messageInput, message.timestamp);
+            }  
+        });    
+    }          
+               
+    // Load public messages when the page is loaded
+    document.addEventListener("DOMContentLoaded", function() {
+        loadPublicMessages();
+    });        
+</script>      
+<script>       
+               
+               
+    // Pre-populate search bar with sample names
+    const searchBar = document.getElementById("search-bar");
+    searchBar.value = "Search.."; // Sample search value
+               
+    // Function to update the dropdown based on search input
+    function updateDropdown() {
+        const searchInput = searchBar.value.toLowerCase();
+        const dropdown = document.getElementById("student-dropdown");
+               
+        // Clear previous options
+        dropdown.innerHTML = "";
+               
+        // Sample student data (replace this with your actual student data)
+    const sampleStudentData = [];
+               
+// Generate 5000 data points
+               
+		   const jsonString = '{{ all_usernames | tojson | safe }}';
+               
+ yourString = "" + jsonString.slice(1, -1) + "";
+               
+ const dataString = yourString
+const dataArray = JSON.parse(dataString);
+               
+for (let i = 1; i <= dataArray.length; i++) {
+    sampleStudentData.push({ name: `Student ${i}` });
+}              
+// Update sampleStudentData with new names
+for (let i = 0; i < Math.min(sampleStudentData.length, dataArray.length); i++) {
+    sampleStudentData[i].name = dataArray[i];
+}              
+               
+               
+        sampleStudentData.forEach((student) => {
+            if (student.name.toLowerCase().includes(searchInput)) {
+                const option = document.createElement("option");
+                option.text = student.name;
+                dropdown.add(option);
+            }  
+        });    
+    }          
+               
+    document.getElementById("chat-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const selectedStudentId = document.getElementById("student-dropdown").value;
+        const selectedStudentName = document.getElementById("student-dropdown").options[document.getElementById("student-dropdown").selectedIndex].text;
+        const messageInput = document.getElementById("message-input").value;
+        const privacyOption = document.getElementById("privacy-dropdown").value;
+		var username = "{{ username }}";
+        const usernamee = username;
+               
+        if (selectedStudentId && messageInput) {
+            const messageData = {
+                selectedStudentName,
+                selectedStudentId,
+                privacyOption,
+                messageInput,
+                usernamee
+            }; 
+               
+            // Convert the data to JSON format
+            const jsonData = JSON.stringify(messageData);
+               
+            // Make an Ajax request to the Flask route
+            fetch('/chat_student', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: jsonData,
+            }) 
+            .then(response => response.json())
+            .then(data => {
+                // Display the response on the page
+                document.getElementById("response-container").innerText = JSON.stringify(data, null, 2);
+            }) 
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        } else {
+            console.error("Please select a student, privacy option, and enter a message.");
+        }      
+    });        
+</script>      
+               
+               
+               
+               
+    <!----------------------chatbot----------------->
+    <div class="chatbox">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__content--header">
+                    <h4 class="chatbox__heading--header">Chat support</h4>
+                </div>
+            </div>
+            <div class="chatbox__messages" id="chatbox_messages">
+            </div>
+            <div class="chatbox__footer">
+                <input type="text" id="user_input" placeholder="Write a message...">
+                <button onclick="sendMessage()" class="chatbox__send--footer"> <i class="fas fa-location-arrow"></i>
+                </button>
+               
+            </div>
+        </div> 
+        <div class="chatbox__button">
+            <button>button</button>
+        </div> 
+    </div>     
+               
+               
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="/static/js/jquery-2.1.3.js"></script>
+	
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+               
+        socket.on('connect', function () {
+            socket.emit('my event', {
+                data: 'User Connected'
+            }) 
+            var form = $('form').on('submit', function (e) {
+                e.preventDefault()
+                let user_name = $('input.username').val()
+                let user_input = $('input.message').val()
+                socket.emit('my event', {
+                    user_name: user_name,
+                    message: user_input
+                })
+                $('input.username').val('').focus()
+               
+                $('input.message').val('').focus()
+            }) 
+        })     
+        socket.on('my response', function (msg) {
+            console.log(msg)
+            if (typeof msg.user_name !== 'undefined') {
+                $('h3').remove()
+                $('div.message-holder').append('<div><b style="color: #000">' + msg.user_name + '</b> ' + msg.message + '</div>')
+                // Check if there are no previous chats, and display "Previous Chats" div
+                if ($('#previous-chats').is(':hidden')) {
+                    $('#previous-chats').show();
+                }
+               
+                // Append the new message
+                $('div.message-holder').append(messageDiv)
+            }  
+        })     
+               
+        function scrollSection(targetId) {
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+               
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach((link) => {
+                    link.classList.remove('active');
+                });
+               
+                const clickedLink = document.querySelector(`[data-target="${targetId}"]`);
+                if (clickedLink) {
+                    clickedLink.classList.add('active');
+                }
+            }  
+        }      
+               
+        function sendMessage() {
+            var userMessage = document.getElementById('user_input').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/chatbot', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    var chatbox = document.getElementById('chatbox_messages');
+               
+                    // Create new message elements
+                    var userMessageElement = document.createElement('div');
+                    userMessageElement.className = 'messages__item messages__item--visitor';
+                    userMessageElement.textContent = userMessage;
+               
+                    var chatbotMessageElement = document.createElement('div');
+                    chatbotMessageElement.className = 'messages__item messages__item--operator';
+                    chatbotMessageElement.textContent = response;
+               
+                    // Insert new message elements at the top of the chatbox
+                    chatbox.insertBefore(userMessageElement, chatbox.firstChild);
+               
+                    chatbox.insertBefore(chatbotMessageElement, chatbox.firstChild);
+                }
+            }; 
+            xhr.send('message=' + userMessage);
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+        }      
+               
+    </script>  
+               
+    <script src="/static/assets/js/Chat.js"></script>
+    <script src="/static/app.js"></script>
+               
+               
+               
+               
+               
+               
+               
+               
+               
+</body>        
+               
+</html>        

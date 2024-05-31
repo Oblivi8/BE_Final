@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/chatbot.css">
+
+    <link rel="stylesheet" href="/static/assets/css/typing.css">
+    <link rel="stylesheet" href="/static/assets/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid" style="margin: 0% 5%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100">
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" href="{{ url_for('student', role='student') }}">Home</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" onclick="scrollSection('resume-builder')" href="/resume_template?username={{ request.args.get('username') }}">Resume Builder</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/chat_student?username={{ request.args.get('username') }}">Alumni Connect</a>
+                    </li>
+                         <li class="nav-item flex-fill">
+    <a class="nav-link p-3 fs-7" href="/project_status?username={{ request.args.get('username') }}" onclick="scrollSection('project-status')">Project Update</a>
+</li>
+               
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/faq_student?username={{ request.args.get('username') }}" onclick="scrollSection('FAQ')">FAQ</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+    <a class="nav-link p-3 fs-7" href="/options" onclick="scrollSection('ai')">AI!</a>
+</li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/" onclick="scrollSection('FAQ')">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Profile box with square shape -->
+                   <div class="ms-3">
+                <div class="profile-box bg-primary text-white rounded p-2">
+                    <p class="mb-0">WELCOME</p>
+			
+                    <p class="mb-0">{{ request.args.get('username') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+    <section id="template_view ">
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- <h1>IMPRESSIVE RESUMES</h1> -->
+                    <h3> A PRO TIP:</h3>
+                    <p>"Your resume should be concise, relevant, and tailored to the job you are applying for.</p>
+                    <p> Highlight your key achievements, skills, and experiences</p>
+                    <p>Craft a personalized objective statement that aligns with the specific role you’re targeting. A
+                        well-written objective can set the tone for the entire resume. </p>
+                    <p>Use bullet points to make it easy to scan</p>
+                    <p> And don't forget to proofread carefully - <b>attention to detail matters!</b>"</p>
+                    <br><br>
+                </div>
+                <div class="col-md-6">
+                    <!-- <img src="../static/img/resume_bg.png"> -->
+                    <div class="b_resume text-center ">
+                        <a class="btn btn-primary b_resume_btn" href="#templates" style="color: white">Build Your Resume
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!----------------------chatbot----------------->
+
+<script>
+    function navigateToProjectUpdate(username) {
+        // Construct the URL with the username as a query parameter
+        var url = '/resume_template?username=' + username;
+
+        // Navigate to the URL
+        window.location.href = url;
+    }
+</script>
+<script>
+    function sendMessageun() {
+						var userInput = document.getElementById("user_input");
+            userInput.placeholder = "Responding...";
+            sendMessage()
+	}
+	
+    function sendMessage() {
+        // Change placeholder text to "Responding..."
+        var userInput = document.getElementById("user_input");
+        userInput.placeholder = "Responding...";
+
+        // Simulate an asynchronous response (replace this with your actual logic)
+        setTimeout(function () {
+            // Replace the following line with your actual response logic
+            var response = "This is the response from the server.";
+            displayMessage(response);
+
+            // Reset placeholder text after response received
+            userInput.placeholder = "Write a message...";
+        }, 1000); // Simulating a delay of 1 second
+
+
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+					var userInput = document.getElementById("user_input");
+            userInput.placeholder = "Responding...";
+            sendMessage();
+
+        }
+    }
+
+    function displayMessage(message) {
+        var messagesDiv = document.getElementById("chatbox_messages");
+        var messageElement = document.createElement("div");
+        messageElement.textContent = message;
+        messagesDiv.appendChild(messageElement);
+    }
+</script>
+
+
+
+    <section id="templates">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>RESUME TEMPLATES</h2>
+                    <p>Choose your own style to make resume</p>
+                </div>
+                <div class="col-md-4 zoom">
+                    <a href="resume_1?username={{ request.args.get('username') }}">
+                        <img src="/static/img/resume1.png" style="width: 100%">
+                    </a>
+                </div>
+                <div class="col-md-4 zoom">
+                    <a href="resume_2">
+                        <img src="/static/img/resume2.png" style="width: 100%">
+                    </a>
+                </div>
+                <div class="col-md-4 zoom">
+                    <a href="#">
+                        <img src="../static/img/comming_soon.jpg" style="width: 100%">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+
+        function sendMessage() {
+            var userMessage = document.getElementById('user_input').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/chatbot', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    var chatbox = document.getElementById('chatbox_messages');
+
+                    // Create new message elements
+                    var userMessageElement = document.createElement('div');
+                    userMessageElement.className = 'messages__item messages__item--visitor';
+                    userMessageElement.textContent = userMessage;
+
+                    var chatbotMessageElement = document.createElement('div');
+                    chatbotMessageElement.className = 'messages__item messages__item--operator';
+                    chatbotMessageElement.textContent = response;
+
+                    // Insert new message elements at the top of the chatbox
+                    chatbox.insertBefore(userMessageElement, chatbox.firstChild);
+
+                    chatbox.insertBefore(chatbotMessageElement, chatbox.firstChild);
+                }
+            };
+            xhr.send('message=' + userMessage);
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+        }
+
+    </script>
+    <script src="/static/assets/js/Chat.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

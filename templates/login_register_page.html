@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/chatbot.css">
+
+    <link rel="stylesheet" href="/static/assets/css/typing.css">
+    <link rel="stylesheet" href="/static/assets/css/chat.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('{{ url_for("static", filename="bgimage14.jpeg") }}') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            backdrop-filter: blur(8px); /* Adjust the blur level as needed */
+            color: white; /* Change text color for better visibility */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Add this section to display flash messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- The rest of your HTML content -->
+
+    <div class="account_page">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-2">
+                    <div class="form_container">
+                        <div class="form-btn">
+                            <span onclick="login()">Login</span>
+                            <span onclick="register()">Register</span>
+                            <hr id="indicator">
+                        </div>
+                        <form id="loginform" action="/" method="post" class="password-container">
+                            <input type="text" name="username" placeholder="username">
+                            <!-- <input type="password" name="password" placeholder="password"> -->
+                            <input type="password" id="password" name="password" placeholder="Password">
+                            <button type="button" id="togglePassword" class="input"
+                                onclick="togglePasswordVisibility('password', 'togglePassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <select name="role" id="role">
+                                <option value="" disabled selected style="color: grey;">Select your role</option>
+
+                                <option value="student">Student</option>
+                                <option value="admin">Admin</option>
+                                <option value="alumni">Alumni</option>
+                            </select>
+
+                            <button type="submit" name="login" class="btn">Login</button>
+                            <a href="">Forget password</a>
+                        </form>
+
+                        <form id="registration" action="/" method="post" class="password-container">
+                           <input type="text" name="username" placeholder="username">
+                           <input type="password" id="password01" name="password" placeholder="password">
+                           <button type="button" id="togglePassword1"
+                               onclick="togglePasswordVisibility('password01', 'togglePassword1')">
+                               <i class="fas fa-eye"></i>
+                           </button>
+                          
+                           <input type="password" id="password1" name="confirm_password"
+                               placeholder="confirm password">
+                           <button type="button" id="togglePassword2" class="input"
+                               onclick="togglePasswordVisibility('password1', 'togglePassword2')">
+                               <i class="fas fa-eye"></i>
+                           </button>
+                          
+                           <select name="role" id="role" onchange="handleRoleChange(this)">
+                               <option value="" disabled selected style="color: grey;">Select your role</option>
+                               <option value="student">Student</option>
+                               <option value="admin">Admin</option>
+                               <option value="alumni">Alumni</option>
+                           </select>
+                          <!-- Inside your registration form -->
+                        
+
+                           <!-- Include this div for seat number input -->
+                           <div id="seatNumberInput" style="display: none;">
+                            
+                               <input type="text" id="seatNoInput" name="seatNo" placeholder="Seat Number">
+                           </div>
+                          
+                           <button type="submit" name="register" class="btn">Register</button>
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------chatbot----------------->
+
+   <!----------------------chatbot----------------->
+<div class="chatbox">
+    <div class="chatbox__support">
+        <div class="chatbox__header">
+            <div class="chatbox__content--header">
+                <h4 class="chatbox__heading--header">Chat support</h4>
+            </div>
+        </div>
+        <div class="chatbox__messages" id="chatbox_messages">
+        </div>
+        <div class="chatbox__footer">
+            <input type="text" id="user_input" placeholder="Write a message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessageun()" class="chatbox__send--footer"> <i class="fas fa-location-arrow"></i>
+            
+			</button>
+        </div>
+    </div>
+    <div class="chatbox__button">
+        <button>button</button>
+    </div>
+</div>
+<script>
+    function handleRoleChange(roleSelect) {
+        var seatNumberInput = document.getElementById('seatNumberInput');
+
+        // Show or hide seat number input based on selected role
+        seatNumberInput.style.display = (roleSelect.value === 'student' || roleSelect.value === 'alumni') ? 'block' : 'none';
+    }
+</script>
+
+    <script>
+        var loginform = document.getElementById("loginform");
+        var regform = document.getElementById("registration");
+        var indicator = document.getElementById("indicator")
+   document.addEventListener("DOMContentLoaded", function () {
+        regform.style.transform = "translateX(300px)";
+        loginform.style.transform = "translateX(300px)";
+        indicator.style.transform = "translateX(0px)";
+    });
+        function register() {
+            regform.style.transform = "translateX(0px)";
+            loginform.style.transform = "translateX(0px)";
+            indicator.style.transform = "translateX(100px)";
+        }
+        function login() {
+            regform.style.transform = "translateX(300px)";
+            loginform.style.transform = "translateX(300px)";
+            indicator.style.transform = "translateX(0px)";
+
+        }
+        setTimeout(function () {
+            var flashMessages = document.querySelector('.flash-messages');
+            if (flashMessages) {
+                flashMessages.remove();
+            }
+        }, 2500);
+
+        function togglePasswordVisibility(passwordId, toggleButtonId) {
+            var passwordInput = document.getElementById(passwordId);
+            var toggleButton = document.getElementById(toggleButtonId);
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleButton.innerHTML = '<i class="fas fa-eye-slash"></i>'; // Change icon to hide
+            } else {
+                passwordInput.type = "password";
+                toggleButton.innerHTML = '<i class="fas fa-eye"></i>'; // Change icon to show
+            }
+        }
+        function sendMessage() {
+            var userMessage = document.getElementById('user_input').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/chatbot', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    var chatbox = document.getElementById('chatbox_messages');
+
+                    // Create new message elements
+                    var userMessageElement = document.createElement('div');
+                    userMessageElement.className = 'messages__item messages__item--visitor';
+                    userMessageElement.textContent = userMessage;
+
+                    var chatbotMessageElement = document.createElement('div');
+                    chatbotMessageElement.className = 'messages__item messages__item--operator';
+                    chatbotMessageElement.textContent = response;
+
+                    // Insert new message elements at the top of the chatbox
+                    chatbox.insertBefore(userMessageElement, chatbox.firstChild);
+
+                    chatbox.insertBefore(chatbotMessageElement, chatbox.firstChild);
+                }
+            };
+            xhr.send('message=' + userMessage);
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+        }
+
+
+
+    </script>
+	
+	<script>
+    // Add this script to handle role change
+    function handleRoleChange(roleSelect) {
+        var seatNumberInput = document.getElementById('seatNumberInput');
+
+        // Show or hide seat number input based on selected role
+        seatNumberInput.style.display = (roleSelect.value === 'student' || roleSelect.value === 'alumni') ? 'block' : 'none';
+    }
+
+    // ... rest of your scripts ...
+</script>
+	
+	
+	
+	
+	
+<script>
+    function sendMessageun() {
+						var userInput = document.getElementById("user_input");
+            userInput.placeholder = "Responding...";
+            sendMessage()
+	}
+	
+    function sendMessage() {
+        // Change placeholder text to "Responding..."
+        var userInput = document.getElementById("user_input");
+        userInput.placeholder = "Responding...";
+
+        // Simulate an asynchronous response (replace this with your actual logic)
+        setTimeout(function () {
+            // Replace the following line with your actual response logic
+            var response = "This is the response from the server.";
+            displayMessage(response);
+
+            // Reset placeholder text after response received
+            userInput.placeholder = "Write a message...";
+        }, 1000); // Simulating a delay of 1 second
+
+
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+					var userInput = document.getElementById("user_input");
+            userInput.placeholder = "Responding...";
+            sendMessage();
+
+        }
+    }
+
+    function displayMessage(message) {
+        var messagesDiv = document.getElementById("chatbox_messages");
+        var messageElement = document.createElement("div");
+        messageElement.textContent = message;
+        messagesDiv.appendChild(messageElement);
+    }
+</script>
+
+
+    <!-- FAQ Section
+    <div id="FAQ">
+        <h2 class="text-center font-weight-bold mb-4 mt-4">FAQ Section</h2>
+        <p class="lead mb-4 text-center">Common questions and answers for students.</p>
+
+        <div class="accordion mt-3" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                        How can I get involved in extracurricular activities?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Start with basic programming courses, preferably Python or R. Then, move on to
+                        more advanced topics like Machine Learning, Statistics, and Data Visualization. Don't forget to
+                        work on real-world projects to apply what you've learned.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        How can I make the most of my time at university?
+                    </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Get involved in extracurricular activities, join clubs, and participate in
+                        events. This will not only make your university life more enjoyable but also help you develop
+                        essential skills.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        What are some tips for acing job interviews?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Research the company beforehand, practice common interview questions, dress
+                        professionally, and be confident. Remember, it's as much about you assessing the company as it
+                        is about them assessing you.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                        How can I improve my academic performance?
+                    </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Consistent study habits, time management, and seeking help when needed can
+                        significantly improve your academic performance. Don't hesitate to ask for help from professors,
+                        tutors, or classmates.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                        What are some effective stress management techniques?
+                    </button>
+                </h2>
+                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Regular exercise, a healthy diet, adequate sleep, and taking time for relaxation
+                        and leisure activities can all help manage stress. Mindfulness and meditation can also be very
+                        effective.
+                    </div>
+                </div>
+            </div> -->
+
+
+    <!-- Add more FAQ entries as needed -->
+    </div>
+    </div>
+
+    <script>
+
+        function scrollSection(targetId) {
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach((link) => {
+                    link.classList.remove('active');
+                });
+
+                const clickedLink = document.querySelector(`[data-target="${targetId}"]`);
+                if (clickedLink) {
+                    clickedLink.classList.add('active');
+                }
+            }
+        }
+
+        function sendMessage() {
+            var userMessage = document.getElementById('user_input').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/chatbot', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    var chatbox = document.getElementById('chatbox_messages');
+
+                    // Create new message elements
+                    var userMessageElement = document.createElement('div');
+                    userMessageElement.className = 'messages__item messages__item--visitor';
+                    userMessageElement.textContent = userMessage;
+
+                    var chatbotMessageElement = document.createElement('div');
+                    chatbotMessageElement.className = 'messages__item messages__item--operator';
+                    chatbotMessageElement.textContent = response;
+
+                    // Insert new message elements at the top of the chatbox
+                    chatbox.insertBefore(userMessageElement, chatbox.firstChild);
+
+                    chatbox.insertBefore(chatbotMessageElement, chatbox.firstChild);
+					var userInput = document.getElementById("user_input");
+                    userInput.placeholder = "write a meessage...";
+
+                }
+            };
+            xhr.send('message=' + userMessage);
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+        }
+
+    </script>
+
+
+
+
+    <script src="/static/assets/js/Chat.js"></script>
+    <script src="/static/app.js"></script>
+
+
+</body>
+
+</html>

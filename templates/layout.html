@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+    body {
+      font-family: 'Lato', sans-serif;
+    }
+    .image-container {
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+    }
+    @keyframes floatAnimation {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    .animated-mascot {
+      animation: floatAnimation 3s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white">
+  <div class="block lg:hidden h-screen flex items-center justify-center">
+    <p class="text-white text-2xl text-center px-4">Application currently available only on PC</p>
+  </div>
+  <div class="hidden lg:flex flex-col h-screen">
+    <nav class="flex justify-between items-center px-10 py-4">
+      <div class="text-4xl font-bold"></div>
+      <div class="space-x-4">
+        <a href="{{url_for('aboutus')}}" class="hover:underline">About Us</a>
+        <a href="{{url_for('faq')}}" class="hover:underline">FAQ</a>
+        {% if 'username' not in session %}
+        <a href="/signup" class="px-6 py-2 border rounded">Sign up</a>
+        {% else %}
+        <a href="/logout" class="px-6 py-2 border rounded">Logout</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    <div class="flex-grow flex items-center justify-center">
+      <div class="space-y-6 mr-10"> <!-- Adjusted for closer positioning -->
+        <h1 class="text-5xl font-bold" style="background-image: linear-gradient(to right, #4299E1, #FFCD37); -webkit-background-clip: text; color: transparent;">CampusAI - The Compass</h1>
+        <p class="text-2xl font-bold">With CampusAI find the path to your career!</p>
+        <p class="text-lg">Chat to start planning, shaping and more with CampusAI</p>
+        {% if 'username' not in session %}
+        <a href="{{ url_for('signup') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-full w-28 mr-4">Sign up</button></a>
+        <a href="{{ url_for('login') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-full w-28">Log in</button></a>               
+        {% else %}
+        <a href="{{ url_for('options') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-4 py-4 px-4 rounded-full w-30">Continue to CampusAI</button></a>             
+        {% endif %}
+
+      </div>
+      <div class="image-container">
+        <img src="../static/mascot.png" alt="CampusAI-the compass" class="rounded-lg shadow-lg h-96 w-96 animated-mascot">
+      </div>
+    </div>
+  </div>
+  <script>
+    console.group("%c Developers Information", 'color: red; font-size: 22px;');
+    console.log('%c This is our Career Guidance Chatbot - CampusAI', 'color: green; font-size: 18px;');
+    console.log('%c We are team Grimoires!!', 'color: blue; font-size: 16px;');
+    console.groupEnd();
+
+    console.group("%c Team members:", 'color: yellow; font-size: 22px')
+    console.log("%c Yash Borade", 'color: orange; font-size: 16px')
+    console.log("%c Shreyas Kolharkar", 'color: orange; font-size: 16px')
+    console.log("%c Diya Sonavale", 'color: orange; font-size: 16px')
+    console.log("%c Swapnil Borude", 'color: orange; font-size: 16px')
+    console.groupEnd();
+  </script>
+</body>
+
+</html>

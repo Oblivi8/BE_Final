@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/chatbot.css">
+
+    <link rel="stylesheet" href="/static/assets/css/typing.css">
+    <link rel="stylesheet" href="/static/assets/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid" style="margin: 0% 5%;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100">
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" href="{{ url_for('student', role='student') }}">Home</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" aria-current="page" onclick="scrollSection('resume-builder')" href="/resume_template?username={{ request.args.get('username') }}">Resume Builder</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/chat_student?username={{ request.args.get('username') }}">Alumni Connect</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/project_status?username={{ request.args.get('username') }}" onclick="scrollSection('project-status')">Project Update</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/faq_student?username={{ request.args.get('username') }}" onclick="scrollSection('FAQ')">FAQ</a>
+                    </li>
+                    <li class="nav-item flex-fill">
+    <a class="nav-link p-3 fs-7" href="/options" onclick="scrollSection('ai')">AI!</a>
+</li>
+                    <li class="nav-item flex-fill">
+                        <a class="nav-link p-3 fs-7" href="/" onclick="scrollSection('FAQ')">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Profile box with square shape -->
+       
+        </div>
+    </div>
+</nav>
+
+
+    <!-- FAQ Section -->
+<div id="FAQ">
+    <h2 class="text-center font-weight-bold mb-4 mt-4">FAQ Section</h2>
+    <p class="lead mb-4 text-center">Common questions and answers for students.</p>
+
+    <div class="accordion mt-3" id="faqAccordion">
+        <!-- Question and Answer 1 -->
+        <div class="accordion-item">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                aria-expanded="false" aria-controls="faq1">
+                How can I get involved in extracurricular activities?
+            </button>
+            <div id="faq1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Alumni Answer: Start with basic programming courses, preferably Python or R. Then, move on to more
+                    advanced topics like Machine Learning, Statistics, and Data Visualization. Don't forget to work on
+                    real-world projects to apply what you've learned.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question and Answer 2 -->
+        <div class="accordion-item">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
+                aria-expanded="false" aria-controls="faq2">
+                How can I make the most of my time at university?
+            </button>
+            <div id="faq2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Alumni Answer: Get involved in extracurricular activities, join clubs, and participate in events.
+                    This will not only make your university life more enjoyable but also help you develop essential
+                    skills.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question and Answer 3 -->
+        <div class="accordion-item">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
+                aria-expanded="false" aria-controls="faq3">
+                What are some tips for acing job interviews?
+            </button>
+            <div id="faq3" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Alumni Answer: Research the company beforehand, practice common interview questions, dress
+                    professionally, and be confident. Remember, it's as much about you assessing the company as it is
+                    about them assessing you.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question and Answer 4 -->
+        <div class="accordion-item">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq4"
+                aria-expanded="false" aria-controls="faq4">
+                How can I improve my academic performance?
+            </button>
+            <div id="faq4" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Alumni Answer: Consistent study habits, time management, and seeking help when needed can
+                    significantly improve your academic performance. Don't hesitate to ask for help from professors,
+                    tutors, or classmates.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question and Answer 5 -->
+        <div class="accordion-item">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq5"
+                aria-expanded="false" aria-controls="faq5">
+                What are some effective stress management techniques?
+            </button>
+            <div id="faq5" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Alumni Answer: Regular exercise, a healthy diet, adequate sleep, and taking time for relaxation and
+                    leisure activities can all help manage stress. Mindfulness and meditation can also be very
+                    effective.
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more questions and answers following the same structure -->
+
+    </div>
+</div>
+<script>
+    function navigateToProjectUpdate(username) {
+        // Construct the URL with the username as a query parameter
+        var url = '/faq_student?username=' + username;
+
+        // Navigate to the URL
+        window.location.href = url;
+    }
+</script>
+<script>
+    // Add this script to handle dropdown button behavior
+    document.addEventListener('DOMContentLoaded', function () {
+        var accordionItems = document.querySelectorAll('.accordion-item');
+
+        accordionItems.forEach(function (item) {
+            var button = item.querySelector('.accordion-button');
+            var collapse = item.querySelector('.accordion-collapse');
+
+            button.addEventListener('click', function () {
+                collapse.classList.toggle('show');
+            });
+        });
+    });
+</script>
+
+
+            <!----------------------chatbot----------------->
+  
+
+<script>
+    function sendMessageun() {
+						var userInput = document.getElementById("user_input");
+            userInput.placeholder = "Responding...";
+            sendMessage()
+	}
+	
+    function sendMessage() {
+        // Change placeholder text to "Responding..."
+        var userInput = document.getElementById("user_input");
+        userInput.placeholder = "Responding...";
+
+        // Simulate an asynchronous response (replace this with your actual logic)
+        setTimeout(function () {
+            // Replace the following line with your actual response logic
+            var response = "This is the response from the server.";
+            displayMessage(response);
+
+            // Reset placeholder text after response received
+            userInput.placeholder = "Write a message...";
+        }, 1000); // Simulating a delay of 1 second
+
+
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+					var userInput = document.getElementById("user_input");
+            userInput.placeholder = "Responding...";
+            sendMessage();
+
+        }
+    }
+
+    function displayMessage(message) {
+        var messagesDiv = document.getElementById("chatbox_messages");
+        var messageElement = document.createElement("div");
+        messageElement.textContent = message;
+        messagesDiv.appendChild(messageElement);
+    }
+</script>
+
+
+    <!-- FAQ Section
+    <div id="FAQ">
+        <h2 class="text-center font-weight-bold mb-4 mt-4">FAQ Section</h2>
+        <p class="lead mb-4 text-center">Common questions and answers for students.</p>
+
+        <div class="accordion mt-3" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                        How can I get involved in extracurricular activities?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Start with basic programming courses, preferably Python or R. Then, move on to
+                        more advanced topics like Machine Learning, Statistics, and Data Visualization. Don't forget to
+                        work on real-world projects to apply what you've learned.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        How can I make the most of my time at university?
+                    </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Get involved in extracurricular activities, join clubs, and participate in
+                        events. This will not only make your university life more enjoyable but also help you develop
+                        essential skills.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        What are some tips for acing job interviews?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Research the company beforehand, practice common interview questions, dress
+                        professionally, and be confident. Remember, it's as much about you assessing the company as it
+                        is about them assessing you.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                        How can I improve my academic performance?
+                    </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Consistent study habits, time management, and seeking help when needed can
+                        significantly improve your academic performance. Don't hesitate to ask for help from professors,
+                        tutors, or classmates.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                        What are some effective stress management techniques?
+                    </button>
+                </h2>
+                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Alumni Answer: Regular exercise, a healthy diet, adequate sleep, and taking time for relaxation
+                        and leisure activities can all help manage stress. Mindfulness and meditation can also be very
+                        effective.
+                    </div>
+                </div>
+            </div> -->
+
+
+    <!-- Add more FAQ entries as needed -->
+    </div>
+    </div>
+
+    <script>
+
+        function scrollSection(targetId) {
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach((link) => {
+                    link.classList.remove('active');
+                });
+
+                const clickedLink = document.querySelector(`[data-target="${targetId}"]`);
+                if (clickedLink) {
+                    clickedLink.classList.add('active');
+                }
+            }
+        }
+
+        function sendMessage() {
+            var userMessage = document.getElementById('user_input').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/chatbot', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    var chatbox = document.getElementById('chatbox_messages');
+
+                    // Create new message elements
+                    var userMessageElement = document.createElement('div');
+                    userMessageElement.className = 'messages__item messages__item--visitor';
+                    userMessageElement.textContent = userMessage;
+
+                    var chatbotMessageElement = document.createElement('div');
+                    chatbotMessageElement.className = 'messages__item messages__item--operator';
+                    chatbotMessageElement.textContent = response;
+
+                    // Insert new message elements at the top of the chatbox
+                    chatbox.insertBefore(userMessageElement, chatbox.firstChild);
+
+                    chatbox.insertBefore(chatbotMessageElement, chatbox.firstChild);
+					var userInput = document.getElementById("user_input");
+                    userInput.placeholder = "write a meessage...";
+
+                }
+            };
+            xhr.send('message=' + userMessage);
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+        }
+
+    </script>
+            <script src="/static/assets/js/Chat.js"></script>
+            <script src="/static/app.js"></script>
+
+
+</body>
+
+</html>
